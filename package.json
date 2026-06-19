@@ -1,6 +1,6 @@
 {
   "name": "trmnl-sheet-quote",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A private plugin for TRMNL to display quotes from a Google Sheet.",
   "main": "index.js",
   "scripts": {
