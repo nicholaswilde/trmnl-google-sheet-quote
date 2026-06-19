@@ -29,3 +29,9 @@ The plugin runs within the TRMNL environment; there is no local Node.js or Pytho
 - **Templating:** Use standard Liquid syntax. Ensure layouts handle dynamic content length gracefully (e.g., long quotes) given the small e-ink screen.
 - **Configuration:** Changes to plugin behavior (like adding new user inputs) happen in `src/settings.yml`.
 - **Versioning:** Use semantic versioning (SemVer) for version tracking, prefixed by a `v` (e.g., `v1.0.0`). Update `package.json` to match this versioning scheme.
+- **TRMNL Integration Rules:**
+  - **Refresh Interval:** `refresh_interval` in `settings.yml` is in seconds. Use `3600` for 1 hour. Avoid low intervals (e.g., `60`) in production.
+  - **Dynamic Cache Busting:** Append `&t={{ "now" | date: "%Y%m%d" }}` to `polling_url` to bypass lazy-refresh caching daily for static feeds.
+  - **Accessing Settings:** Access custom fields in Liquid templates using `{{ trmnl.plugin_settings.custom_fields_values.<keyname> }}`.
+  - **Liquid Math:** Do not perform math inside filter arguments (like `data.size - 1`). Use `| minus: 1` filter to assign a helper variable first.
+  - **Dynamic Skip:** Set `window.TRMNL_SKIP_DISPLAY = true;` inside scripts to dynamically skip the plugin layout display.
