@@ -38,7 +38,8 @@
   try {
     console.log("Sheet Quote: Starting execution");
     {% if data %}
-      {% assign formatted_data = data | slice: 1, data.size - 1 %}
+      {% assign limit = data.size | minus: 1 %}
+      {% assign formatted_data = data | slice: 1, limit %}
     {% else %}
       {% assign formatted_data = "" | split: "" %}
     {% endif %}

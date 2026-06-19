@@ -4,7 +4,7 @@ no_screen_padding: 'no'
 dark_mode: 'no'
 static_data: ''
 polling_verb: get
-polling_url: https://docs.google.com/spreadsheets/d/{{spreadsheet_id}}/export?format=csv
+polling_url: https://docs.google.com/spreadsheets/d/{{spreadsheet_id}}/export?format=csv&t={{ "now" | date: "%Y%m%d" }}
 polling_headers: ''
 polling_body: ''
 id: 121258
@@ -47,4 +47,4 @@ custom_fields:
   learn_more_url: https://nicholaswilde.io/
   email_address: ncwilde43@gmail.com
 name: Sheet Quote
-refresh_interval: 60
+refresh_interval: 3600
