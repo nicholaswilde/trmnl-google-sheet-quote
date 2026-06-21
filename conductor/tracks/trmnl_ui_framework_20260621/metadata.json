@@ -1,0 +1,8 @@
+{
+  "track_id": "trmnl_ui_framework_20260621",
+  "type": "chore",
+  "status": "new",
+  "created_at": "2026-06-21T18:03:50Z",
+  "updated_at": "2026-06-21T18:03:50Z",
+  "description": "Ensure that this repo uses the latest trmnl UI Framework. Reference https://help.trmnl.com/en/articles/14135346-ui-framework-versioning and https://trmnl.com/framework"
+}
