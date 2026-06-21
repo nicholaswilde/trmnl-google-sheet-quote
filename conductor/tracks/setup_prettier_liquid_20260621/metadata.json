@@ -1,0 +1,8 @@
+{
+  "track_id": "setup_prettier_liquid_20260621",
+  "type": "chore",
+  "status": "new",
+  "created_at": "2026-06-21T18:05:45Z",
+  "updated_at": "2026-06-21T18:05:45Z",
+  "description": "Set up Prettier formatter with Shopify Liquid plugin"
+}

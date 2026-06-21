@@ -14,3 +14,13 @@
 
 - [ ] **Track: Ensure that this repo uses the latest trmnl UI Framework. Reference https://help.trmnl.com/en/articles/14135346-ui-framework-versioning and https://trmnl.com/framework**
 *Link: [./tracks/trmnl_ui_framework_20260621/](./tracks/trmnl_ui_framework_20260621/)*
+
+---
+
+- [ ] **Track: Set up Shopify Theme Check linter for Liquid files**
+*Link: [./tracks/setup_theme_check_linter_20260621/](./tracks/setup_theme_check_linter_20260621/)*
+
+---
+
+- [ ] **Track: Set up Prettier formatter with Shopify Liquid plugin**
+*Link: [./tracks/setup_prettier_liquid_20260621/](./tracks/setup_prettier_liquid_20260621/)*
