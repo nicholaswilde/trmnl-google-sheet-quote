@@ -12,7 +12,7 @@
 
 ---
 
-- [ ] **Track: Set up Shopify Theme Check linter for Liquid files**
+- [~] **Track: Set up Shopify Theme Check linter for Liquid files**
 *Link: [./tracks/setup_theme_check_linter_20260621/](./tracks/setup_theme_check_linter_20260621/)*
 
 ---

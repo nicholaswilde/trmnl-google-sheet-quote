@@ -1,9 +1,9 @@
 # Implementation Plan - Set up Shopify Theme Check Linter
 
 ## Phase 1: Tech Stack & Documentation
-- [ ] Task: Update Tech Stack Documentation
-    - [ ] Update `conductor/tech-stack.md` to specify Theme Check as the Liquid linting tool
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Tech Stack & Documentation' (Protocol in workflow.md)
+- [x] Task: Update Tech Stack Documentation
+    - [x] Update `conductor/tech-stack.md` to specify Theme Check as the Liquid linting tool
+- [~] Task: Conductor - User Manual Verification 'Phase 1: Tech Stack & Documentation' (Protocol in workflow.md)
 
 ## Phase 2: Configuration & Integration
 - [ ] Task: Create Theme Check Configuration
