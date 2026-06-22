@@ -5,13 +5,13 @@ This plan outlines the steps to implement bi-directional synchronization between
 ## Phase 1: Local Configuration & Setup
 Initialize the `trmnlp` configuration and prepare the repository for GitHub Actions.
 
-- [ ] Task: Initialize `.trmnlp.yml` in `src/`
-    - [ ] Run `trmnlp init` or manually create `.trmnlp.yml` in `src/`.
-    - [ ] Configure the `plugin_id` and ensure paths point correctly to the source files.
-- [ ] Task: Update README.md with Setup Instructions
-    - [ ] Add a section on "GitHub Synchronization".
-    - [ ] Document the requirement for the `TRMNL_API_KEY` GitHub Secret.
-- [ ] Task: Conductor - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+- [x] Task: Initialize `.trmnlp.yml` in `src/`
+    - [x] Run `trmnlp init` or manually create `.trmnlp.yml` in `src/`.
+    - [x] Configure the `plugin_id` and ensure paths point correctly to the source files.
+- [x] Task: Update README.md with Setup Instructions
+    - [x] Add a section on "GitHub Synchronization".
+    - [x] Document the requirement for the `TRMNL_API_KEY` GitHub Secret.
+- [~] Task: Conductor - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 
 ## Phase 2: GitHub Actions Implementation
 Create the workflow files for Push and Pull operations.
