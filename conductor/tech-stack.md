@@ -14,6 +14,8 @@
 ## Development Tools
 - **Git:** For version control and repository management.
 - **Gemini CLI:** For project management and workflow automation using the Conductor methodology.
+- **trmnlp CLI:** Used for local rendering, preview, and syncing with the TRMNL developer platform.
+- **GitHub Actions:** Automates code synchronization (pushing layouts on tags and daily pulling configuration changes).
 
 ## Runtime Environment
 The plugin runs within the TRMNL environment; there is no local Node.js or Python server to run. `package.json` exists primarily for metadata.
