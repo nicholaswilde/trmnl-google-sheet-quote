@@ -1,0 +1,5 @@
+# .theme-check.yml
+ignore:
+  - node_modules/
+  - conductor/
+  - .agents/

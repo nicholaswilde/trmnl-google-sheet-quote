@@ -56,6 +56,14 @@ This project does not have any dependencies to install or a development server t
 
 To make changes, edit the files in the `src` directory. The `.liquid` files control the layout, and `settings.yml` controls the configuration options.
 
+### Linting
+This project uses Shopify's **Theme Check** to lint the Liquid template files and verify best practices.
+*   **VS Code**: Install the official **Shopify Liquid** extension to view linting warnings and syntax validation directly in your editor.
+*   **CLI**: If you have Shopify CLI installed, run:
+    ```bash
+    shopify theme check
+    ```
+
 ## :balance_scale: License
 
 This project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE) file for details.
