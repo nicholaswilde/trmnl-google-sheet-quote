@@ -28,8 +28,8 @@ Create the workflow files for Push and Pull operations.
 ## Phase 3: Verification
 Verify the workflows in a live environment (requires manual coordination with TRMNL).
 
-- [ ] Task: Verify Push Trigger
-    - [ ] Create and push a dummy tag to verify the workflow fires.
-- [ ] Task: Verify Pull Trigger
-    - [ ] Manually trigger the Pull workflow via the GitHub Actions tab.
-- [ ] Task: Conductor - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+- [x] Task: Verify Push Trigger
+    - [x] Create and push a dummy tag to verify the workflow fires.
+- [x] Task: Verify Pull Trigger
+    - [x] Manually trigger the Pull workflow via the GitHub Actions tab.
+- [~] Task: Conductor - User Manual Verification 'Phase 3' (Protocol in workflow.md)
