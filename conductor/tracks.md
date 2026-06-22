@@ -24,3 +24,8 @@
 
 - [ ] **Track: Set up Prettier formatter with Shopify Liquid plugin**
 *Link: [./tracks/setup_prettier_liquid_20260621/](./tracks/setup_prettier_liquid_20260621/)*
+
+---
+
+- [ ] **Track: Set up local preview using Docker and usetrmnl/trmnlp image**
+*Link: [./tracks/setup_docker_local_preview_20260621/](./tracks/setup_docker_local_preview_20260621/)*
