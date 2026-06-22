@@ -1,0 +1,39 @@
+name: Pull Plugin from TRMNL
+
+on:
+  schedule:
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+
+      - name: Install trmnl_preview CLI
+        run: gem install trmnl_preview
+
+      - name: Pull plugin from TRMNL
+        run: trmnnlp pull
+        env:
+          TRMNL_API_KEY: ${{ secrets.TRMNL_API_KEY }}
+
+      - name: Create Pull Request on Changes
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "docs(trmnl): Sync plugin configurations from TRMNL"
+          title: "docs(trmnl): Sync plugin configurations from TRMNL"
+          body: "This PR contains configuration or layout updates pulled from the TRMNL developer portal."
+          branch: "trmnl-sync"
+          delete-branch: true

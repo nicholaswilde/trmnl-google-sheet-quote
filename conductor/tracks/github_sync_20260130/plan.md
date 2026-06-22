@@ -16,14 +16,14 @@ Initialize the `trmnlp` configuration and prepare the repository for GitHub Acti
 ## Phase 2: GitHub Actions Implementation
 Create the workflow files for Push and Pull operations.
 
-- [ ] Task: Create Push Workflow (`.github/workflows/trmnlp-push.yml`)
-    - [ ] Configure trigger on `tags`.
-    - [ ] Implement the `trmnlp push` step using the `TRMNL_API_KEY`.
-- [ ] Task: Create Pull Workflow (`.github/workflows/trmnlp-pull.yml`)
-    - [ ] Configure schedule (midnight PST / `0 8 * * *` UTC).
-    - [ ] Configure `workflow_dispatch` for manual runs.
-    - [ ] Implement the `trmnlp pull` step and logic to create a PR on changes.
-- [ ] Task: Conductor - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [x] Task: Create Push Workflow (`.github/workflows/trmnlp-push.yml`)
+    - [x] Configure trigger on `tags`.
+    - [x] Implement the `trmnlp push` step using the `TRMNL_API_KEY`.
+- [x] Task: Create Pull Workflow (`.github/workflows/trmnlp-pull.yml`)
+    - [x] Configure schedule (midnight PST / `0 8 * * *` UTC).
+    - [x] Configure `workflow_dispatch` for manual runs.
+    - [x] Implement the `trmnlp pull` step and logic to create a PR on changes.
+- [~] Task: Conductor - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
 ## Phase 3: Verification
 Verify the workflows in a live environment (requires manual coordination with TRMNL).

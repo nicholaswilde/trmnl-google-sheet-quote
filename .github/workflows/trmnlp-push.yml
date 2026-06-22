@@ -1,0 +1,26 @@
+name: Push Plugin to TRMNL
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+
+      - name: Install trmnl_preview CLI
+        run: gem install trmnl_preview
+
+      - name: Push plugin to TRMNL
+        run: trmnlp push
+        env:
+          TRMNL_API_KEY: ${{ secrets.TRMNL_API_KEY }}
