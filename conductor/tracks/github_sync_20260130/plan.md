@@ -25,11 +25,11 @@ Create the workflow files for Push and Pull operations.
     - [x] Implement the `trmnlp pull` step and logic to create a PR on changes.
 - [x] Task: Conductor - User Manual Verification 'Phase 2' (Protocol in workflow.md)
 
-## Phase 3: Verification
+## Phase 3: Verification (8dbb35dea3da9996bebc22944c6770944bc05ed4)
 Verify the workflows in a live environment (requires manual coordination with TRMNL).
 
 - [x] Task: Verify Push Trigger
     - [x] Create and push a dummy tag to verify the workflow fires.
 - [x] Task: Verify Pull Trigger
     - [x] Manually trigger the Pull workflow via the GitHub Actions tab.
-- [~] Task: Conductor - User Manual Verification 'Phase 3' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 3' (Protocol in workflow.md)
