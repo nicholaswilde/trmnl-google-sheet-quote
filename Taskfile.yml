@@ -14,6 +14,7 @@ tasks:
       - test -f .trmnlp.yml
     cmds:
       - cp .trmnlp.yml.example .trmnlp.yml
+      - echo "Please update the variables in your local .trmnlp.yml file with your Google Sheet credentials."
 
   lint:
     desc: Run Shopify Theme Check linter on Liquid files
