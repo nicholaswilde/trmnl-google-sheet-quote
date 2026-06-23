@@ -12,7 +12,7 @@
 
 ---
 
-- [~] **Track: Set up Prettier formatter with Shopify Liquid plugin**
+- [x] **Track: Set up Prettier formatter with Shopify Liquid plugin**
 *Link: [./tracks/setup_prettier_liquid_20260621/](./tracks/setup_prettier_liquid_20260621/)*
 
 ---
