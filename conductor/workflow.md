@@ -15,9 +15,11 @@ All tasks follow a strict lifecycle:
 
 ### Standard Task Workflow
 
-1. **Select Task:** Choose the next available task from `plan.md` in sequential order
+1. **Select Task & Verify GitHub Issue:**
+   - Choose the next available task from `plan.md` in sequential order.
+   - Ensure the track has an associated GitHub issue mapped in its `metadata.json` under `github_issue_number`. If it does not, run `task conductor:sync` to automatically search, create, and document the issue relationship.
 
-2. **Mark In Progress:** Before beginning work, edit `plan.md` and change the task from `[ ]` to `[~]`
+2. **Mark In Progress:** Before beginning work, edit `plan.md` and change the task from `[ ]` to `[~]`.
 
 3. **Implementation:**
    - Write the minimum amount of application code necessary to satisfy the task's requirements.
@@ -28,8 +30,9 @@ All tasks follow a strict lifecycle:
    - Verify layout rendering by opening the browser to `http://localhost:4567/full` (or other layout paths) or curling `http://localhost:4567/render/full.html`.
    - Ensure the template parses layout classes and dynamic quote values successfully without errors.
 
-5. **Mark Task Complete in Plan:**
+5. **Mark Task Complete in Plan & Close Issue:**
    - Read `plan.md`, find the line for the completed task, and update its status from `[~]` to `[x]`.
+   - If this task completes the final phase of a track, ensure the associated GitHub issue is closed. You can do this by adding `Fixes #<issue_number>` to the checkpoint commit message or by running `gh issue close <issue_number>` manually.
 
 6. **Documentation:**
    - Update `product.md` or `tech-stack.md` if any architectural or product-level decisions were made during the task.
@@ -83,6 +86,7 @@ Before marking any task complete, verify:
 - [ ] No linting or static analysis errors (using the project's configured tools)
 - [ ] Works correctly on mobile (if applicable)
 - [ ] Documentation updated if needed (including `README.md` and `.trmnlp.yml.example` when configuration settings change)
+- [ ] Related GitHub issue is documented in the track's `metadata.json` and closed upon track completion
 - [ ] No security vulnerabilities introduced
 
 ## Development & Usage
