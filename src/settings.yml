@@ -1,5 +1,6 @@
 ---
 strategy: polling
+framework_version: 3.1
 no_screen_padding: "no"
 dark_mode: "no"
 static_data: ""
