@@ -13,5 +13,11 @@ tasks:
 
   serve:
     desc: Run local TRMNL preview server using Docker container
+    env:
+      APP_ENV: production
+      RACK_ENV: production
+    preconditions:
+      - which trmnlp
+    # dir: ./src
     cmds:
-      - docker run -it --rm -p 4567:4567 -v "$(pwd):/app" usetrmnl/trmnlp
+      - trmnlp serve -b 0.0.0.0

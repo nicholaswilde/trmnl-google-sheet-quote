@@ -40,3 +40,11 @@ yarn-error.log
 # OS
 .DS_Store
 Thumbs.db
+
+# TRMNL Local Preview Artifacts
+.trmnl/
+*.png
+
+# Mise / Environment configurations (if you use local overrides)
+.mise.local.toml
+.env
