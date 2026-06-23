@@ -38,6 +38,23 @@
       }[tag]));
   }
 
+  var fallbackQuotes = [
+    { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+    { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
+    { text: "It always seems impossible until it's done.", author: "Nelson Mandela" },
+    { text: "Keep your face always toward the sunshine - and shadows will fall behind you.", author: "Walt Whitman" },
+    { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
+    { text: "Start where you are. Use what you have. Do what you can.", author: "Arthur Ashe" }
+  ];
+
+  function useFallback(reason) {
+    console.warn("Sheet Quote: Fallback active. Reason: " + reason);
+    var randIndex = Math.floor(Math.random() * fallbackQuotes.length);
+    var selected = fallbackQuotes[randIndex];
+    document.querySelector('#quote').innerHTML = escapeHTML(selected.text);
+    document.querySelector('#author').innerHTML = escapeHTML(selected.author);
+  }
+
   try {
     console.log("Sheet Quote: Starting execution");
     {% if data %}
@@ -59,18 +76,19 @@
       var authorContent = row[authorIndex] || "";
 
       if (!quoteContent) {
-        console.warn("Sheet Quote: Quote column empty at row " + quoteIndex + ", col " + quote2Index);
-        quoteContent = "Quote column (index " + quote2Index + ") not found";
+        useFallback("Quote column (index " + quote2Index + ") is empty or out of bounds at row " + quoteIndex);
+      } else {
+        document.querySelector('#quote').innerHTML = escapeHTML(quoteContent);
+        document.querySelector('#author').innerHTML = escapeHTML(authorContent);
       }
-
-      document.querySelector('#quote').innerHTML = escapeHTML(quoteContent);
-      document.querySelector('#author').innerHTML = escapeHTML(authorContent);
     } else {
-      console.error("Sheet Quote: formatted_data is empty or null");
-      document.querySelector('#quote').innerHTML = "No data found. Check Spreadsheet ID.";
+      useFallback("formatted_data is empty or null");
     }
   } catch (e) {
-    console.error("Sheet Quote: Critical Error", e);
-    document.querySelector('#quote').innerHTML = "Error: " + e.message;
+    try {
+      useFallback("Critical Error: " + e.message);
+    } catch (fallbackError) {
+      console.error("Sheet Quote: Fallback failed", fallbackError);
+    }
   }
 </script>

@@ -7,7 +7,7 @@
 
 ---
 
-- [ ] **Track: Implement fallback offline quote cache in Liquid templates for error resilience**
+- [~] **Track: Implement fallback offline quote cache in Liquid templates for error resilience**
 *Link: [./tracks/fallback_quote_cache_20260622/](./tracks/fallback_quote_cache_20260622/)*
 
 ---
