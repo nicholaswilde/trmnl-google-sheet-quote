@@ -19,12 +19,12 @@ Add fallback quote caches and trigger logic to all four Liquid templates.
 ## Phase 2: Verification
 Verify that the fallback mechanism displays correctly under simulated error states.
 
-- [~] Task: Verify fallback rendering via local preview server
-    - [ ] Test layout rendering with empty data source configuration.
-    - [ ] Verify that a random fallback quote and author are successfully displayed on the simulated screen.
-    - [ ] Check console warnings to ensure fallback activation is logged.
-- [ ] Task: Verify fallback layout formatting
-    - [ ] Ensure formatting, margins, text scaling, and fonts behave identically to standard quotes.
-- [ ] Task: Run format task to ensure Prettier compliance
-    - [ ] Run `task format` to clean up syntax/formatting.
-- [ ] Task: Conductor - User Manual Verification 'Phase 2' (Protocol in workflow.md)
+- [x] Task: Verify fallback rendering via local preview server
+    - [x] Test layout rendering with empty data source configuration.
+    - [x] Verify that a random fallback quote and author are successfully displayed on the simulated screen.
+    - [x] Check console warnings to ensure fallback activation is logged.
+- [x] Task: Verify fallback layout formatting
+    - [x] Ensure formatting, margins, text scaling, and fonts behave identically to standard quotes.
+- [x] Task: Run format task to ensure Prettier compliance
+    - [x] Run `task format` to clean up syntax/formatting.
+- [x] Task: Conductor - User Manual Verification 'Phase 2' (Protocol in workflow.md)
