@@ -17,16 +17,18 @@
   </div>
 </div>
 
-<div class="title_bar">
-  <img
-    class="image"
-    src="https://raw.githubusercontent.com/nicholaswilde/trmnl-sheet-quote/refs/heads/main/src/img/sheet-quote.svg"
-    width="40"
-    height="40"
-  >
-  <span class="title">{{ trmnl.plugin_settings.instance_name }}</span>
-  <span class="instance">Display a random quote from a Google Sheet</span>
-</div>
+{% unless trmnl.plugin_settings.custom_fields_values.hide_title_bar == 'Yes' %}
+  <div class="title_bar">
+    <img
+      class="image"
+      src="https://raw.githubusercontent.com/nicholaswilde/trmnl-sheet-quote/refs/heads/main/src/img/sheet-quote.svg"
+      width="40"
+      height="40"
+    >
+    <span class="title">{{ trmnl.plugin_settings.instance_name }}</span>
+    <span class="instance">Display a random quote from a Google Sheet</span>
+  </div>
+{% endunless %}
 <script type="text/javascript">
   function escapeHTML(str) {
     if (!str) return "";

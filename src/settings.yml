@@ -40,6 +40,14 @@ custom_fields:
     name: Author Column Index
     description: The index of the author column in the Google Sheet. First column index is "0".
     default: 2
+  - keyname: hide_title_bar
+    field_type: select
+    name: Hide Title Bar
+    description: Hide the bottom plugin title bar to maximize quote size.
+    options:
+      - "No"
+      - "Yes"
+    default: "No"
   - keyname: author
     name: About This Plugin
     field_type: author_bio
