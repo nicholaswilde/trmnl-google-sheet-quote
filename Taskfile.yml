@@ -1,6 +1,13 @@
 version: '3'
 
 tasks:
+  bootstrap:
+    desc: Bootstrap the local development environment (install dependencies and config)
+    cmds:
+      - bundle install
+      - npm install
+      - task: init
+
   init:
     desc: Initialize local configuration file from template
     status:
