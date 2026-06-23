@@ -2,7 +2,7 @@
 
 This plan outlines the steps to implement a fallback offline quote cache in the Liquid templates.
 
-## Phase 1: Logic Implementation
+## Phase 1: Logic Implementation (SHA: 4754cab4b2dca0a33718d0417db8f6e50da119b3)
 Add fallback quote caches and trigger logic to all four Liquid templates.
 
 - [x] Task: Define Fallback Cache and Logic in `src/full.liquid`
