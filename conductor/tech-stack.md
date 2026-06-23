@@ -16,6 +16,7 @@
 - **Gemini CLI:** For project management and workflow automation using the Conductor methodology.
 - **trmnlp CLI (via trmnl_preview gem):** Used for local rendering, preview, and syncing with the TRMNL developer platform. Note: Due to limitations in the upstream gem (v0.8.7), it must be patched locally (in `lib/trmnlp/poller.rb`) to follow redirects (for Google Sheets CSV export) and parse `text/csv` content types.
 - **GitHub Actions:** Automates code synchronization (pushing layouts on tags and daily pulling configuration changes).
+- **GitHub CLI (gh):** Used to query and manage GitHub Actions workflows, runs, and releases. Piping commands to `cat` (e.g. `gh run view --log | cat`) is required to prevent interactive paging/prompts.
 - **Shopify Theme Check:** Linter for verifying Liquid file syntax and best practices.
 - **Prettier & @shopify/prettier-plugin-liquid:** Formatter for consistent Liquid and YAML file styling.
 
@@ -34,6 +35,7 @@ The plugin runs within the TRMNL environment; there is no local Node.js or Pytho
 - **Configuration:** Changes to plugin behavior (like adding new user inputs) happen in `src/settings.yml`.
 - **UI Framework Version:** Always pin the plugin rendering UI framework version to `3.1` in `src/settings.yml` to ensure layout compatibility.
 - **Versioning:** Use semantic versioning (SemVer) for version tracking, prefixed by a `v` (e.g., `v1.0.0`). Update `package.json` to match this versioning scheme.
+- **Non-Interactive Commands:** When running command-line interfaces such as the GitHub CLI (`gh`), always pipe output to `cat` (e.g. `gh ... | cat`) to bypass interactive prompts and pagination.
 - **TRMNL Integration Rules:**
   - **Refresh Interval:** `refresh_interval` in `settings.yml` is in seconds. Use `3600` for 1 hour. Avoid low intervals (e.g., `60`) in production.
   - **Dynamic Cache Busting:** Append `&t={{ "now" | date: "%Y%m%d" }}` to `polling_url` to bypass lazy-refresh caching daily for static feeds.
