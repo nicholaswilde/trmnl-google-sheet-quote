@@ -1,6 +1,13 @@
 version: '3'
 
 tasks:
+  init:
+    desc: Initialize local configuration file from template
+    status:
+      - test -f .trmnlp.yml
+    cmds:
+      - cp .trmnlp.yml.example .trmnlp.yml
+
   lint:
     desc: Run Shopify Theme Check linter on Liquid files
     cmds:
