@@ -1,5 +1,8 @@
 # :framed_picture: TRMNL Google Sheet Quote :bar_chart:
 
+[![task](https://img.shields.io/badge/Task-Enabled-brightgreen?style=for-the-badge&logo=task&logoColor=white)](https://taskfile.dev/#/)
+[![ci](https://img.shields.io/github/actions/workflow/status/nicholaswilde/trmnl-google-sheet-quote/ci.yml?label=ci&style=for-the-badge&branch=main&logo=github-actions)](https://github.com/nicholaswilde/trmnl-google-sheet-quote/actions/workflows/ci.yml)
+
 A private plugin for [TRMNL](https://trmnl.com/) to display quotes from a Google Sheet.
 
 ![sheet-quote](https://raw.githubusercontent.com/nicholaswilde/trmnl-sheet-quote/refs/heads/main/src/img/screenshot.png)
