@@ -1,9 +1,21 @@
 # .trmnlp.yml - TRMNLP local configuration template
+# Use this file to configure environment variables for local rendering and verification.
 ---
+# The unique identifier assigned to your private plugin on the TRMNL developer dashboard.
 plugin_id: 121258
-custom_fields:
-  spreadsheet_id: "your_google_sheet_id_here"
-  quote_index: 1 # column index for quotes (0-based)
-  author_index: 2 # column index for authors (0-based)
-  hide_title_bar: "No" # Option to hide the bottom title bar ("Yes" or "No")
 
+# Simulates custom settings fields defined in settings.yml for local previewing.
+custom_fields:
+  # The unique sheet ID extracted from your Google Sheet URL (e.g., https://docs.google.com/spreadsheets/d/[SPREADSHEET_ID]/...)
+  # NOTE: The sheet must be shared with "Anyone with the link" set to Viewer access.
+  spreadsheet_id: "your_google_sheet_id_here"
+
+  # The zero-based column index representing where the quote text is located in your sheet (e.g., Column A is 0, Column B is 1).
+  quote_index: 1
+
+  # The zero-based column index representing where the author attribution is located in your sheet (e.g., Column C is 2).
+  author_index: 2
+
+  # Set to "Yes" to omit the bottom TRMNL logo and title bar, allowing quote text to fill the entire screen area.
+  # Set to "No" to display the default title bar branding (default).
+  hide_title_bar: "No"
