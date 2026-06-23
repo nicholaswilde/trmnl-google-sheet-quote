@@ -16,3 +16,4 @@ The primary users are individuals who own a TRMNL device and wish to personalize
 - **Randomization:** Selects a random entry from the provided spreadsheet to keep the content fresh.
 - **Multi-Layout Support:** Provides liquid templates for various TRMNL display sizes (Full, Half Horizontal, Half Vertical, Quadrant).
 - **Flexible Configuration:** Settings for Spreadsheet ID, Quote Column Index, and Author Column Index.
+- **Offline Fallback Caching:** Automatically displays a randomized quote from a local pre-defined cache if the Google Sheet CSV data is empty or fails to fetch, ensuring the display remains resilient and elegant.
