@@ -1,0 +1,7 @@
+# .trmnlp.yml - TRMNLP local configuration template
+---
+plugin_id: 121258
+custom_fields:
+  spreadsheet_id: "your_google_sheet_id_here"
+  quote_index: 1 # column index for quotes (0-based)
+  author_index: 2 # column index for authors (0-based)

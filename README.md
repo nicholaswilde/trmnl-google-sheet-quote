@@ -58,13 +58,9 @@ To make changes, edit the files in the `src` directory. The `.liquid` files cont
 
 You can run a local preview server of the plugin to verify layout changes using the `trmnlp` CLI:
 
-1. **Configure Local Variables:** Create a `.trmnlp.yml` configuration file in the root directory to mock user settings:
-   ```yaml
-   plugin_id: 121258
-   custom_fields:
-     spreadsheet_id: "19hESY6AbY2ZwBph_ndF3zrw9hG__2NLzsbZTMrTlcPk"
-     quote_index: 1
-     author_index: 2
+1. **Configure Local Variables:** Copy the example config file to `.trmnlp.yml` in the root directory and update it with your Google Sheet credentials:
+   ```bash
+   cp .trmnlp.yml.example .trmnlp.yml
    ```
 2. **Start the Preview Server:** Run the following command:
    ```bash
