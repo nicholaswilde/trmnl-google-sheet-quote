@@ -32,6 +32,7 @@ The plugin runs within the TRMNL environment; there is no local Node.js or Pytho
 - **Structure:** Keep all plugin source files inside `src/`.
 - **Templating:** Use standard Liquid syntax. Ensure layouts handle dynamic content length gracefully (e.g., long quotes) given the small e-ink screen.
 - **Configuration:** Changes to plugin behavior (like adding new user inputs) happen in `src/settings.yml`.
+- **UI Framework Version:** Always pin the plugin rendering UI framework version to `3.1` in `src/settings.yml` to ensure layout compatibility.
 - **Versioning:** Use semantic versioning (SemVer) for version tracking, prefixed by a `v` (e.g., `v1.0.0`). Update `package.json` to match this versioning scheme.
 - **TRMNL Integration Rules:**
   - **Refresh Interval:** `refresh_interval` in `settings.yml` is in seconds. Use `3600` for 1 hour. Avoid low intervals (e.g., `60`) in production.

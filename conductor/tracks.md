@@ -7,5 +7,5 @@
 
 ---
 
-- [ ] **Track: Ensure that this repo uses the latest trmnl UI Framework. Reference https://help.trmnl.com/en/articles/14135346-ui-framework-versioning and https://trmnl.com/framework**
+- [~] **Track: Ensure that this repo uses the latest trmnl UI Framework. Reference https://help.trmnl.com/en/articles/14135346-ui-framework-versioning and https://trmnl.com/framework**
 *Link: [./tracks/trmnl_ui_framework_20260621/](./tracks/trmnl_ui_framework_20260621/)*
