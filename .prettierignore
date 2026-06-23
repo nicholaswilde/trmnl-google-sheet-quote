@@ -1,0 +1,5 @@
+node_modules/
+conductor/
+.git/
+package.json
+package-lock.json

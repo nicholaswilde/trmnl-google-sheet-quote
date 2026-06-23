@@ -6,13 +6,13 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Tech Stack Update' (Protocol in workflow.md)
 
 ## Phase 2: Tooling & Configuration Setup
-- [ ] Task: Install Dependencies
+- [x] Task: Install Dependencies
     - [ ] Install `prettier` and `@shopify/prettier-plugin-liquid` as dev dependencies
-- [ ] Task: Configure Prettier
+- [x] Task: Configure Prettier
     - [ ] Create `.prettierrc` referencing the plugin
     - [ ] Create `.prettierignore` ignoring `node_modules`, `conductor/`, `.git`
-- [ ] Task: Add Package Scripts
+- [x] Task: Add Package Scripts
     - [ ] Add `format` script to `package.json` to format all liquid and yml files
-- [ ] Task: Verify & Format Code
+- [x] Task: Verify & Format Code
     - [ ] Run formatting on all `src/*.liquid` and `src/*.yml` files
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Tooling & Configuration Setup' (Protocol in workflow.md)
+- [~] Task: Conductor - User Manual Verification 'Phase 2: Tooling & Configuration Setup' (Protocol in workflow.md)

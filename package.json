@@ -4,7 +4,8 @@
   "description": "A private plugin for TRMNL to display quotes from a Google Sheet.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write \"src/**/*.{liquid,yml}\""
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/nicholaswilde/trmnl-sheet-quote/issues"
   },
-  "homepage": "https://github.com/nicholaswilde/trmnl-sheet-quote#readme"
+  "homepage": "https://github.com/nicholaswilde/trmnl-sheet-quote#readme",
+  "devDependencies": {
+    "@shopify/prettier-plugin-liquid": "^1.10.3",
+    "prettier": "^3.8.4"
+  }
 }

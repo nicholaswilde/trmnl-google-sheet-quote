@@ -1,50 +1,50 @@
 ---
 strategy: polling
-no_screen_padding: 'no'
-dark_mode: 'no'
-static_data: ''
+no_screen_padding: "no"
+dark_mode: "no"
+static_data: ""
 polling_verb: get
-polling_url: https://docs.google.com/spreadsheets/d/{{spreadsheet_id}}/export?format=csv&t={{ "now" | date: "%Y%m%d" }}
-polling_headers: ''
-polling_body: ''
+polling_url: 'https://docs.google.com/spreadsheets/d/{{spreadsheet_id}}/export?format=csv&t={{ "now" | date: "%Y%m%d" }}'
+polling_headers: ""
+polling_body: ""
 id: 121258
 custom_fields:
-- keyname: about
-  name: About
-  field_type: author_bio
-  description: Display a random quote from a Google Sheet
-  github_url: https://github.com/nicholaswilde/trmnl-sheet-quote
-  learn_more_url: https://help.usetrmnl.com/en/articles/11400219-using-google-sheets-with-private-plugins
-- keyname: instructions
-  name: Instructions
-  field_type: author_bio
-  description: Create a Google Sheet with a quote and an author column, add the <em><b>Anyone with a link can view</b></em> permission, and paste the "Spreadsheet ID" into the field below. Optionally, use a Google Form to easily add quotes to the Sheet.
-  github_url: https://github.com/nicholaswilde/trmnl-sheet-quote
-  learn_more_url: https://help.usetrmnl.com/en/articles/11400219-using-google-sheets-with-private-plugins
-- keyname: spreadsheet_id
-  field_type: string
-  name: Spreadsheet ID
-  description: The ID of the Google Sheet
-  placeholder: 19hESY6AbY2ZwBph_ndF3zrw9hG__2NLzsbZTMrTlcPk
-  default: 19hESY6AbY2ZwBph_ndF3zrw9hG__2NLzsbZTMrTlcPk
-- keyname: quote_index
-  field_type: number
-  placeholder: '1'
-  name: Quote Column Index
-  description: The index of the quote column in the Google Sheet. First column index is "0"
-  default: 1
-- keyname: author_index
-  field_type: number
-  placeholder: '1'
-  name: Author Column Index
-  description: The index of the author column in the Google Sheet. First column index is "0".
-  default: 2
-- keyname: author
-  name: About This Plugin
-  field_type: author_bio
-  description: Sheet Quote was created by Nicholas Wilde, a tinkerer of much.
-  github_url: https://github.com/nicholaswilde
-  learn_more_url: https://nicholaswilde.io/
-  email_address: ncwilde43@gmail.com
+  - keyname: about
+    name: About
+    field_type: author_bio
+    description: Display a random quote from a Google Sheet
+    github_url: https://github.com/nicholaswilde/trmnl-sheet-quote
+    learn_more_url: https://help.usetrmnl.com/en/articles/11400219-using-google-sheets-with-private-plugins
+  - keyname: instructions
+    name: Instructions
+    field_type: author_bio
+    description: Create a Google Sheet with a quote and an author column, add the <em><b>Anyone with a link can view</b></em> permission, and paste the "Spreadsheet ID" into the field below. Optionally, use a Google Form to easily add quotes to the Sheet.
+    github_url: https://github.com/nicholaswilde/trmnl-sheet-quote
+    learn_more_url: https://help.usetrmnl.com/en/articles/11400219-using-google-sheets-with-private-plugins
+  - keyname: spreadsheet_id
+    field_type: string
+    name: Spreadsheet ID
+    description: The ID of the Google Sheet
+    placeholder: 19hESY6AbY2ZwBph_ndF3zrw9hG__2NLzsbZTMrTlcPk
+    default: 19hESY6AbY2ZwBph_ndF3zrw9hG__2NLzsbZTMrTlcPk
+  - keyname: quote_index
+    field_type: number
+    placeholder: "1"
+    name: Quote Column Index
+    description: The index of the quote column in the Google Sheet. First column index is "0"
+    default: 1
+  - keyname: author_index
+    field_type: number
+    placeholder: "1"
+    name: Author Column Index
+    description: The index of the author column in the Google Sheet. First column index is "0".
+    default: 2
+  - keyname: author
+    name: About This Plugin
+    field_type: author_bio
+    description: Sheet Quote was created by Nicholas Wilde, a tinkerer of much.
+    github_url: https://github.com/nicholaswilde
+    learn_more_url: https://nicholaswilde.io/
+    email_address: ncwilde43@gmail.com
 name: Sheet Quote
 refresh_interval: 3600
