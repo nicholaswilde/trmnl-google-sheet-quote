@@ -16,7 +16,7 @@ Add fallback quote caches and trigger logic to all four Liquid templates.
     - [x] Replicate fallback quotes array and logic.
 - [x] Task: Conductor - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 
-## Phase 2: Verification
+## Phase 2: Verification (SHA: 2e092591aab7553b4bf5cd759a7a1f893c2ebfcf)
 Verify that the fallback mechanism displays correctly under simulated error states.
 
 - [x] Task: Verify fallback rendering via local preview server
