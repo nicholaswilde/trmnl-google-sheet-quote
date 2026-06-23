@@ -48,3 +48,5 @@ Thumbs.db
 # Mise / Environment configurations (if you use local overrides)
 .mise.local.toml
 .env
+.trmnlp.yml
+
