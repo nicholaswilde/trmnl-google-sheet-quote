@@ -31,7 +31,9 @@ All tasks follow a strict lifecycle:
 5. **Mark Task Complete in Plan:**
    - Read `plan.md`, find the line for the completed task, and update its status from `[~]` to `[x]`.
 
-6. **Documentation:** Update `product.md` or `tech-stack.md` if any architectural or product-level decisions were made during the task.
+6. **Documentation:**
+   - Update `product.md` or `tech-stack.md` if any architectural or product-level decisions were made during the task.
+   - Update `.trmnlp.yml.example` and `README.md` when adding or modifying plugin configuration options (custom settings) to ensure documentation matches local templates.
 
 ### Phase Completion Verification and Checkpointing Protocol
 
@@ -80,7 +82,7 @@ Before marking any task complete, verify:
 - [ ] Type safety is enforced (e.g., type hints, TypeScript types, Go types)
 - [ ] No linting or static analysis errors (using the project's configured tools)
 - [ ] Works correctly on mobile (if applicable)
-- [ ] Documentation updated if needed
+- [ ] Documentation updated if needed (including `README.md` and `.trmnlp.yml.example` when configuration settings change)
 - [ ] No security vulnerabilities introduced
 
 ## Development & Usage
