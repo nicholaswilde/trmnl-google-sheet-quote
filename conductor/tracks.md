@@ -10,10 +10,6 @@
 - [ ] **Track: Add a git pre-commit hook to automate Prettier formatting**
 *Link: [./tracks/precommit_prettier_hook_20260622/](./tracks/precommit_prettier_hook_20260622/)*
 
----
-
-- [x] **Track: Hide Title Bar Option**
-*Link: [./tracks/hide_title_bar_20260623/](./tracks/hide_title_bar_20260623/)*
 
 ---
 
