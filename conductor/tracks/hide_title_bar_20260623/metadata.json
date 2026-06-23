@@ -1,0 +1,8 @@
+{
+  "track_id": "hide_title_bar_20260623",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-06-23T13:11:24Z",
+  "updated_at": "2026-06-23T13:11:24Z",
+  "description": "Add a configuration option to hide the TRMNL title bar to maximize screen space for the quote layout."
+}

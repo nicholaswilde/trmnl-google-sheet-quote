@@ -10,4 +10,17 @@
 - [ ] **Track: Add a git pre-commit hook to automate Prettier formatting**
 *Link: [./tracks/precommit_prettier_hook_20260622/](./tracks/precommit_prettier_hook_20260622/)*
 
+---
 
+- [ ] **Track: Hide Title Bar Option**
+*Link: [./tracks/hide_title_bar_20260623/](./tracks/hide_title_bar_20260623/)*
+
+---
+
+- [ ] **Track: Custom Font Style Selection**
+*Link: [./tracks/custom_font_style_20260623/](./tracks/custom_font_style_20260623/)*
+
+---
+
+- [ ] **Track: Layout Text Alignment Control**
+*Link: [./tracks/text_alignment_20260623/](./tracks/text_alignment_20260623/)*
