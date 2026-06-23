@@ -24,7 +24,9 @@ All tasks follow a strict lifecycle:
    - For TRMNL plugins, this involves editing `.liquid` and `.yml` files.
 
 4. **Verify Locally:**
-   - Since there is no local dev server, verification involves manual inspection of the liquid templates and ensuring they follow the TRMNL structure.
+   - Run `task serve` to spin up the local TRMNL preview server.
+   - Verify layout rendering by opening the browser to `http://localhost:4567/full` (or other layout paths) or curling `http://localhost:4567/render/full.html`.
+   - Ensure the template parses layout classes and dynamic quote values successfully without errors.
 
 5. **Mark Task Complete in Plan:**
    - Read `plan.md`, find the line for the completed task, and update its status from `[~]` to `[x]`.

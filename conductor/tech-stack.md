@@ -14,7 +14,7 @@
 ## Development Tools
 - **Git:** For version control and repository management.
 - **Gemini CLI:** For project management and workflow automation using the Conductor methodology.
-- **trmnlp CLI:** Used for local rendering, preview, and syncing with the TRMNL developer platform.
+- **trmnlp CLI (via trmnl_preview gem):** Used for local rendering, preview, and syncing with the TRMNL developer platform. Note: Due to limitations in the upstream gem (v0.8.7), it must be patched locally (in `lib/trmnlp/poller.rb`) to follow redirects (for Google Sheets CSV export) and parse `text/csv` content types.
 - **GitHub Actions:** Automates code synchronization (pushing layouts on tags and daily pulling configuration changes).
 - **Shopify Theme Check:** Linter for verifying Liquid file syntax and best practices.
 - **Prettier & @shopify/prettier-plugin-liquid:** Formatter for consistent Liquid and YAML file styling.

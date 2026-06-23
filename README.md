@@ -52,9 +52,60 @@ If you see "No data found" or the plugin is stuck on "Loading quote…":
 
 ## :construction: Development
 
-This project does not have any dependencies to install or a development server to run. The plugin is designed to be used within the TRMNL application.
-
 To make changes, edit the files in the `src` directory. The `.liquid` files control the layout, and `settings.yml` controls the configuration options.
+
+### Local Development & Preview
+
+You can run a local preview server of the plugin to verify layout changes using the `trmnlp` CLI:
+
+1. **Configure Local Variables:** Create a `.trmnlp.yml` configuration file in the root directory to mock user settings:
+   ```yaml
+   plugin_id: 121258
+   custom_fields:
+     spreadsheet_id: "19hESY6AbY2ZwBph_ndF3zrw9hG__2NLzsbZTMrTlcPk"
+     quote_index: 1
+     author_index: 2
+   ```
+2. **Start the Preview Server:** Run the following command:
+   ```bash
+   task serve
+   ```
+3. **Verify:** Open your browser to `http://localhost:4567/full` (or other layout paths) or verify by curling `/render/full.html`.
+
+#### Required Gem Patch for Google Sheets Polling
+
+Because the upstream `trmnl_preview` gem (v0.8.7) does not follow HTTP redirects or parse CSV content types out of the box, you must patch the gem's source code to display Google Sheet data correctly:
+
+1. Locate the gem source file `lib/trmnlp/poller.rb` (run `gem which trmnl_preview` or `gem which trmnlp` to find its path).
+2. Add `require 'csv'` to the top of the file:
+   ```ruby
+   require 'csv'
+   ```
+3. Update the `perform_request` method to follow HTTP redirects recursively:
+   ```ruby
+   def perform_request(url, verb)
+     conn = Faraday.new(url:, headers: config.plugin.polling_headers)
+     response = verb == 'POST' ? conn.post { |req| req.body = config.plugin.polling_body } : conn.get
+     if [301, 302, 303, 307, 308].include?(response.status) && response.headers['location']
+       perform_request(response.headers['location'], verb)
+     else
+       response
+     end
+   end
+   ```
+4. Update the `parse_body` method to support parsing `text/csv` payloads into the expected `data` array:
+   ```ruby
+   def parse_body(body, content_type_header)
+     content_type = content_type_header&.split(';')&.first&.strip
+     case content_type
+     when 'application/json', %r{^application/.+\+json} then wrap_array(JSON.parse(body))
+     when 'text/xml', 'application/xml', %r{^application/.+\+xml} then wrap_array(Hash.from_xml(body))
+     when 'text/html', 'text/plain' then sniff_json(body) || { 'data' => body }
+     when 'text/csv' then { 'data' => CSV.parse(body) }
+     else log_unknown_type(content_type_header)
+     end
+   end
+   ```
 
 ### Linting
 This project uses Shopify's **Theme Check** to lint the Liquid template files and verify best practices.
