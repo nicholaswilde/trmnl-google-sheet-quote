@@ -25,7 +25,7 @@ jobs:
         run: gem install trmnl_preview
 
       - name: Pull plugin from TRMNL
-        run: trmnnlp pull
+        run: trmnlp pull
         env:
           TRMNL_API_KEY: ${{ secrets.TRMNL_API_KEY }}
 
