@@ -19,7 +19,7 @@ tasks:
   lint:
     desc: Run Shopify Theme Check linter on Liquid files
     cmds:
-      - shopify theme check
+      - npx shopify theme check
 
   format:
     desc: Run Prettier formatting on source templates and configurations
