@@ -2,6 +2,7 @@
 
 [![task](https://img.shields.io/badge/Task-Enabled-brightgreen?style=for-the-badge&logo=task&logoColor=white)](https://taskfile.dev/#/)
 [![ci](https://img.shields.io/github/actions/workflow/status/nicholaswilde/trmnl-google-sheet-quote/ci.yml?label=ci&style=for-the-badge&branch=main&logo=github-actions)](https://github.com/nicholaswilde/trmnl-google-sheet-quote/actions/workflows/ci.yml)
+[![pull](https://img.shields.io/github/actions/workflow/status/nicholaswilde/trmnl-google-sheet-quote/trmnlp-pull.yml?label=pull&style=for-the-badge&branch=main&logo=github-actions)](https://github.com/nicholaswilde/trmnl-google-sheet-quote/actions/workflows/trmnlp-pull.yml)
 
 A private plugin for [TRMNL](https://trmnl.com/) to display quotes from a Google Sheet.
 
