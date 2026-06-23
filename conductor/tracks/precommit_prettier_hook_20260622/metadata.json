@@ -3,6 +3,7 @@
   "type": "feature",
   "status": "new",
   "created_at": "2026-06-22T20:30:00Z",
-  "updated_at": "2026-06-22T20:30:00Z",
-  "description": "Add a git pre-commit hook to automate Prettier formatting"
+  "updated_at": "2026-06-23T14:00:30Z",
+  "description": "Add a git pre-commit hook to automate Prettier formatting",
+  "github_issue_number": 8
 }

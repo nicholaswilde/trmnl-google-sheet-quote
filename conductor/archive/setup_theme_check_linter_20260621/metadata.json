@@ -3,6 +3,7 @@
   "type": "chore",
   "status": "new",
   "created_at": "2026-06-21T18:05:40Z",
-  "updated_at": "2026-06-21T18:05:40Z",
-  "description": "Set up Shopify Theme Check linter for Liquid files"
+  "updated_at": "2026-06-23T14:00:34Z",
+  "description": "Set up Shopify Theme Check linter for Liquid files",
+  "github_issue_number": 12
 }

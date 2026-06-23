@@ -46,3 +46,9 @@ tasks:
     desc: Update framework_version in settings.yml
     cmds:
       - ruby .agents/skills/trmnl_framework/scripts/manage_framework.rb update {{.CLI_ARGS}}
+
+  conductor:sync:
+    desc: Sync Conductor tracks with GitHub issues in both directions
+    cmds:
+      - ruby .agents/skills/conductor_github_sync/scripts/sync_tracks.rb sync
+

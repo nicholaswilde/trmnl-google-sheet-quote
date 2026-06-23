@@ -3,6 +3,7 @@
   "type": "feature",
   "status": "new",
   "created_at": "2026-01-30T21:05:00Z",
-  "updated_at": "2026-01-30T21:05:00Z",
-  "description": "create a github workflow to create a release when a new tag is pushed. Use run-gemini-cli action to auto generate a github release summary. Use emoji shortcodes in the release summary. Make the release summary a draft. https://github.com/google-github-actions/run-gemini-cli"
+  "updated_at": "2026-06-23T14:00:29Z",
+  "description": "create a github workflow to create a release when a new tag is pushed. Use run-gemini-cli action to auto generate a github release summary. Use emoji shortcodes in the release summary. Make the release summary a draft. https://github.com/google-github-actions/run-gemini-cli",
+  "github_issue_number": 4
 }
