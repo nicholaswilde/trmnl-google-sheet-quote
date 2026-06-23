@@ -12,7 +12,7 @@
 
 ---
 
-- [~] **Track: Hide Title Bar Option**
+- [x] **Track: Hide Title Bar Option**
 *Link: [./tracks/hide_title_bar_20260623/](./tracks/hide_title_bar_20260623/)*
 
 ---
