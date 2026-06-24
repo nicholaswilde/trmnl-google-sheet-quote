@@ -129,8 +129,36 @@ def sync_tracks_to_issues
   gh_issues = fetch_gh_issues
 
   tracks.each do |track|
-    # Skip if already has issue number
-    next if track['github_issue_number']
+    # If it already has an issue number, verify labels are up to date on GitHub
+    if track['github_issue_number']
+      issue_num = track['github_issue_number'].to_i
+      matched_issue = gh_issues.find { |i| i['number'] == issue_num }
+      if matched_issue
+        expected_labels = ['conductor']
+        case track['type'].to_s.downcase
+        when 'bug'
+          expected_labels << 'bug'
+        when 'feature'
+          expected_labels << 'enhancement'
+        when 'chore'
+          expected_labels << 'chore'
+        when 'documentation', 'docs'
+          expected_labels << 'documentation'
+        else
+          expected_labels << 'enhancement'
+        end
+
+        actual_labels = matched_issue['labels'] ? matched_issue['labels'].map { |l| l['name'].downcase } : []
+        missing_labels = expected_labels.select { |el| !actual_labels.include?(el) }
+        
+        if !missing_labels.empty?
+          puts "GitHub Issue ##{issue_num} is missing labels: #{missing_labels.join(', ')}. Adding..."
+          cmd = "gh issue edit #{issue_num} --add-label #{Shellwords.escape(missing_labels.join(','))}"
+          run_cmd(cmd)
+        end
+      end
+      next
+    end
 
     # Search for existing issues by title
     track_title = track['description']
