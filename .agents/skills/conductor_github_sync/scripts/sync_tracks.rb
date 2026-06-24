@@ -260,6 +260,44 @@ def import_issue_as_track(issue, clean_title)
   end
 end
 
+# Close issues of completed/archived tracks
+def close_completed_track_issues
+  tracks = load_all_tracks
+  
+  # Completed/archived tracks are those located in ARCHIVE_DIR
+  archived_tracks = tracks.select { |t| t['dir_path'].start_with?(ARCHIVE_DIR) }
+  
+  if archived_tracks.empty?
+    puts "No archived tracks found to check for issue closing."
+    return
+  end
+
+  archived_tracks.each do |track|
+    issue_num = track['github_issue_number']
+    next unless issue_num
+
+    # Get issue state
+    stdout, success = run_cmd("gh issue view #{issue_num} --json state")
+    next unless success
+
+    begin
+      data = JSON.parse(stdout)
+      if data['state'] == 'OPEN'
+        puts "Found open issue ##{issue_num} for archived/completed track '#{track['description']}'."
+        close_cmd = "gh issue close #{issue_num} --reason completed --comment \"Closed automatically via Conductor sync task (track completed & archived).\""
+        _, close_success = run_cmd(close_cmd)
+        if close_success
+          puts "Successfully closed GitHub Issue ##{issue_num}."
+        else
+          puts "Failed to close GitHub Issue ##{issue_num}."
+        end
+      end
+    rescue => e
+      puts "Error checking/closing issue ##{issue_num}: #{e.message}"
+    end
+  end
+end
+
 # Main routing logic
 check_gh
 
@@ -270,13 +308,17 @@ when 'sync'
   sync_tracks_to_issues
   puts "\nSyncing GitHub issues to tracks..."
   sync_issues_to_tracks
+  puts "\nChecking for completed/archived tracks to close issues..."
+  close_completed_track_issues
 when 'tracks-to-issues'
   sync_tracks_to_issues
 when 'issues-to-tracks'
   sync_issues_to_tracks
 when 'issues-to-tracks-auto'
   sync_issues_to_tracks(true)
+when 'close-completed'
+  close_completed_track_issues
 else
-  puts "Usage: ruby sync_tracks.rb [sync|tracks-to-issues|issues-to-tracks|issues-to-tracks-auto]"
+  puts "Usage: ruby sync_tracks.rb [sync|tracks-to-issues|issues-to-tracks|issues-to-tracks-auto|close-completed]"
   exit 1
 end

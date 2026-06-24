@@ -34,6 +34,12 @@ To synchronize the tracks and issues, you can run the following automated tasks:
    ```
 
 4. **Auto-Import Unmapped Issues as Tracks:**
+
    ```bash
    ruby .agents/skills/conductor_github_sync/scripts/sync_tracks.rb issues-to-tracks-auto
+   ```
+
+5. **Check and Close Completed Track Issues:**
+   ```bash
+   ruby .agents/skills/conductor_github_sync/scripts/sync_tracks.rb close-completed
    ```
