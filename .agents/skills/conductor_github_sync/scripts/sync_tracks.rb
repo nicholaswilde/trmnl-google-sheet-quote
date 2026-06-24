@@ -51,7 +51,7 @@ end
 
 # Get all open/closed GitHub issues
 def fetch_gh_issues
-  stdout, success = run_cmd("gh issue list --state all --json number,title,body --limit 100")
+  stdout, success = run_cmd("gh issue list --state all --json number,title,body,labels --limit 100")
   return [] unless success
   JSON.parse(stdout)
 end
@@ -78,11 +78,28 @@ def create_issue_from_track(track)
     body = $1.strip
   end
 
+  # Determine labels to apply
+  labels = ['conductor']
+  case track['type'].to_s.downcase
+  when 'bug'
+    labels << 'bug'
+  when 'feature'
+    labels << 'enhancement'
+  when 'chore'
+    labels << 'chore'
+  when 'documentation', 'docs'
+    labels << 'documentation'
+  else
+    labels << 'enhancement'
+  end
+
+  issue_labels = labels.join(',')
+
   # Title prefix to match Conductor tracks pattern
   issue_title = "Track: #{title}"
   
   puts "Creating GitHub issue for track '#{title}'..."
-  cmd = "gh issue create --title #{Shellwords.escape(issue_title)} --body #{Shellwords.escape(body)}"
+  cmd = "gh issue create --title #{Shellwords.escape(issue_title)} --body #{Shellwords.escape(body)} --label #{Shellwords.escape(issue_labels)}"
   stdout, success = run_cmd(cmd)
   if success && stdout =~ %r{/issues/(\d+)}
     issue_num = $1.to_i
@@ -194,10 +211,21 @@ def import_issue_as_track(issue, clean_title)
   FileUtils.mkdir_p(track_dir)
   puts "Created track directory: #{track_dir}"
 
+  # Determine track type based on issue labels
+  issue_labels = issue['labels'] ? issue['labels'].map { |l| l['name'].downcase } : []
+  track_type = "feature"
+  if issue_labels.include?('bug')
+    track_type = "bug"
+  elsif issue_labels.include?('chore')
+    track_type = "chore"
+  elsif issue_labels.include?('documentation')
+    track_type = "docs"
+  end
+
   # Create metadata.json
   meta = {
     "track_id" => track_id,
-    "type" => "feature",
+    "type" => track_type,
     "status" => "new",
     "created_at" => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%SZ"),
     "updated_at" => Time.now.utc.strftime("%Y-%m-%dT%H:%M:%SZ"),
