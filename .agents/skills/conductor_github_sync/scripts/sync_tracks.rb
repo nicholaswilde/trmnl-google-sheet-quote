@@ -51,7 +51,7 @@ end
 
 # Get all open/closed GitHub issues
 def fetch_gh_issues
-  stdout, success = run_cmd("gh issue list --state all --json number,title,body,labels --limit 100")
+  stdout, success = run_cmd("gh issue list --state all --json number,title,body,labels,state --limit 100")
   return [] unless success
   JSON.parse(stdout)
 end
@@ -160,9 +160,9 @@ def sync_issues_to_tracks(auto_confirm = false)
   tracks = load_all_tracks
   gh_issues = fetch_gh_issues
 
-  # Filter issues that are NOT mapped to any track
+  # Filter open issues that are NOT mapped to any track
   unmapped_issues = gh_issues.select do |issue|
-    tracks.none? { |t| t['github_issue_number'] == issue['number'].to_i }
+    issue['state'] == 'OPEN' && tracks.none? { |t| t['github_issue_number'] == issue['number'].to_i }
   end
 
   if unmapped_issues.empty?
@@ -182,7 +182,7 @@ def sync_issues_to_tracks(auto_confirm = false)
     puts "Found unmapped issue ##{number}: '#{title}'"
     unless auto_confirm
       print "Do you want to import this issue as a Conductor track? (y/n): "
-      ans = gets.strip.downcase
+      ans = STDIN.gets.strip.downcase
       next unless ans == 'y' || ans == 'yes'
     end
 

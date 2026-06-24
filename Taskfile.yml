@@ -52,3 +52,8 @@ tasks:
     cmds:
       - ruby .agents/skills/conductor_github_sync/scripts/sync_tracks.rb sync
 
+  sync:
+    desc: Shortcut for conductor:sync
+    cmds:
+      - task: conductor:sync
+
