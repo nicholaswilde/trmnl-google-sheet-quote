@@ -5,17 +5,17 @@ This plan outlines the steps to add a configuration option to choose the layout 
 ## Phase 1: Logic & Styling Implementation
 Add the configuration field and apply alignment styling depending on user selection in all Liquid files.
 
-- [ ] Task: Add custom field `text_alignment` in `src/settings.yml`
-    - [ ] Configure keyname, name, type (select with Center/Left/Right options), and default to Center.
-- [ ] Task: Update styling in `src/full.liquid`
-    - [ ] Map user alignment choice to CSS classes (or style updates) applied to quote text and author elements.
-- [ ] Task: Update styling in `src/half_horizontal.liquid`
-    - [ ] Apply layout text alignment styling based on selection.
-- [ ] Task: Update styling in `src/half_vertical.liquid`
-    - [ ] Apply layout text alignment styling based on selection.
-- [ ] Task: Update styling in `src/quadrant.liquid`
-    - [ ] Apply layout text alignment styling based on selection.
-- [ ] Task: Conductor - User Manual Verification 'Phase 1' (Protocol in workflow.md)
+- [x] Task: Add custom field `text_alignment` in `src/settings.yml`
+    - [x] Configure keyname, name, type (select with Center/Left/Right options), and default to Center.
+- [x] Task: Update styling in `src/full.liquid`
+    - [x] Map user alignment choice to CSS classes (or style updates) applied to quote text and author elements.
+- [x] Task: Update styling in `src/half_horizontal.liquid`
+    - [x] Apply layout text alignment styling based on selection.
+- [x] Task: Update styling in `src/half_vertical.liquid`
+    - [x] Apply layout text alignment styling based on selection.
+- [x] Task: Update styling in `src/quadrant.liquid`
+    - [x] Apply layout text alignment styling based on selection.
+- [x] Task: Conductor - User Manual Verification 'Phase 1' (Protocol in workflow.md)
 
 ## Phase 2: Verification
 Verify layout rendering under different alignment selections.

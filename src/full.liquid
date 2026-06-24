@@ -1,9 +1,20 @@
+{% assign alignment = trmnl.plugin_settings.custom_fields_values.text_alignment | default: 'Center' %}
+{% if alignment == 'Left' %}
+  {% assign richtext_align = '' %}
+  {% assign content_align = 'text--left' %}
+{% elsif alignment == 'Right' %}
+  {% assign richtext_align = 'richtext--right' %}
+  {% assign content_align = '--right text--right' %}
+{% else %}
+  {% assign richtext_align = 'richtext--center' %}
+  {% assign content_align = '--center text--center' %}
+{% endif %}
 <div class="layout">
   <div class="columns">
     <div class="column">
       <div class="markdown gap--large">
-        <div class="richtext richtext--center gap--xxlarge">
-          <div class="content content--large --center gap--medium text--center">
+        <div class="richtext {{ richtext_align }} gap--xxlarge">
+          <div class="content content--large {{ content_align }} gap--medium">
             <span class="value value--xxxlarge" data-value-fit="true" data-value-fit-max-height="170">
               <span id="quote">Loading quote…</span>
             </span>

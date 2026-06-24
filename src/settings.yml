@@ -48,6 +48,15 @@ custom_fields:
       - "No"
       - "Yes"
     default: "No"
+  - keyname: text_alignment
+    field_type: select
+    name: Text Alignment
+    description: Select alignment for quote and author text.
+    options:
+      - "Center"
+      - "Left"
+      - "Right"
+    default: "Center"
   - keyname: author
     name: About This Plugin
     field_type: author_bio

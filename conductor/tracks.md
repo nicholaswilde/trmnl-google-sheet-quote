@@ -18,5 +18,5 @@
 
 ---
 
-- [ ] **Track: Layout Text Alignment Control**
+- [~] **Track: Layout Text Alignment Control**
 *Link: [./tracks/text_alignment_20260623/](./tracks/text_alignment_20260623/)*
