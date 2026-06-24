@@ -19,3 +19,6 @@ custom_fields:
   # Set to "Yes" to omit the bottom TRMNL logo and title bar, allowing quote text to fill the entire screen area.
   # Set to "No" to display the default title bar branding (default).
   hide_title_bar: "No"
+
+  # The alignment option for the quote and author text (options: "Center", "Left", "Right", default: "Center").
+  text_alignment: "Center"

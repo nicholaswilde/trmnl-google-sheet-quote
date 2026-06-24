@@ -30,6 +30,7 @@ Configuration is handled within the TRMNL application. After installing the plug
 - **Quote Column Index**: The column number (starting from 0) for the quotes in your sheet.
 - **Author Column Index**: The column number (starting from 0) for the authors in your sheet.
 - **Hide Title Bar**: Option to hide the bottom TRMNL logo and title bar (options: `No`, `Yes`).
+- **Text Alignment**: Option to align quote and author text (options: `Center`, `Left`, `Right`).
 
 For more detailed instructions, please see the [TRMNL documentation](https://help.usetrmnl.com/en/articles/11400219-using-google-sheets-with-private-plugins).
 
