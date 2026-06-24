@@ -16,7 +16,3 @@
 - [ ] **Track: Custom Font Style Selection**
 *Link: [./tracks/custom_font_style_20260623/](./tracks/custom_font_style_20260623/)*
 
----
-
-- [x] **Track: Layout Text Alignment Control**
-*Link: [./tracks/text_alignment_20260623/](./tracks/text_alignment_20260623/)*
