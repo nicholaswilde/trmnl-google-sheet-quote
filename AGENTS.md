@@ -94,6 +94,11 @@ Use Headroom (`headroom`) MCP tools to manage context window consumption on larg
 - **Scope**: Use `-t liquid` or `-t yaml` where appropriate, `-l` for file listing, keep context small (`-C 1`).
 <!-- ripgrep-guidelines-end -->
 
+<!-- uv-rules-begin -->
+## Python Execution with `uv`
+- **Prefix with `uv`**: Always execute Python scripts, tools, and tests via `uv run python3 <script>` (e.g. `uv run python3 scripts/generate_daily_quote.py`) or `uv run <command>`. Never run bare `python3` or `python`.
+<!-- uv-rules-end -->
+
 <!-- sensitive-information-protection-begin -->
 ## Sensitive Information & Secret Protection
 - Never commit secrets, passwords, tokens, API keys, `.trmnlp.yml`, or `.env` files.

@@ -24,7 +24,7 @@ tasks:
   test:
     desc: Run Python unit test suite
     cmds:
-      - python3 -m unittest discover tests
+      - uv run python3 -m unittest discover tests
 
   format:
     desc: Run Prettier formatting on source templates and configurations
