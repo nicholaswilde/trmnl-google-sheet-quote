@@ -4,6 +4,7 @@
 - **GitHub CLI**: Prefix `gh` commands with `rtk` and pipe to `cat` (e.g., `rtk gh issue list | cat`, `rtk gh pr status | cat`). Always pipe to bypass interactive pagers.
 - **File & Directory Inspection**: Use `rtk ls`, `rtk tree`, `rtk find`, or `rtk read` when listing or reading files for token-optimized output.
 - **Searching**: Use `rtk rg` or `rg` (ripgrep) for line search pattern matching to save tokens.
+- **Node / NPX Operations**: Prefix `npx` commands with `rtk` (e.g., `rtk npx ...`, `rtk test npx ...`, `rtk err npx ...`). Automatically routes known tools (ESLint, Prettier, TypeScript, Vitest) to specialized filters and strips package execution boilerplate.
 - **Build & Test Outputs**: Use `rtk err` or `rtk test` when running build/test commands to filter output to errors/failures only (e.g., `rtk test npx shopify theme check`).
 - **Exceptions**: Inside `ctx_execute` / `ctx_batch_execute` sandbox code, skip `rtk` (only printed output enters context). Drop `rtk` when exact raw bytes or patch required (`git diff` patch).
 <!-- rtk-end -->
