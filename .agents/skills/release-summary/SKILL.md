@@ -9,11 +9,14 @@ Generates a clean, professional GitHub release summary based on git logs.
 
 ## Description
 
-This skill uses `scripts/release_summary.py` to retrieve git commit logs, format them into a structured markdown summary (Features, Bug Fixes, etc.), and updates the existing GitHub draft release.
+This skill uses `scripts/release_summary.py` to retrieve git commit logs, format them into a structured markdown summary (Features, Bug Fixes, etc.), and updates the existing GitHub draft release. Both the git tag and the release title must include the `v` prefix (e.g. `v1.1.2`).
+
+> [!NOTE]
+> Release titles and tags must always include the `v` prefix (e.g. tag `v1.1.2` and title `v1.1.2`).
 
 ## Protocol
 
-1. Execute the Python script. If no range is provided, it automatically detects the latest two tags.
+1. Execute the Python script. If no range is provided, it automatically detects the latest two tags. Specify ranges with the `v` prefix (e.g. `v1.1.0 to v1.1.2` or `v1.1.0..v1.1.2`):
 
    ```bash
    uv run python3 scripts/release_summary.py [range]
@@ -39,4 +42,4 @@ This skill uses `scripts/release_summary.py` to retrieve git commit logs, format
    Huge thanks to **<Name>** for <reason>!
    ```
 
-3. The script will parse the commits, generate the markdown, and automatically run `gh release edit` (or `gh release create`) to update the draft release in-place.
+3. The script will parse the commits, generate the markdown, ensure the release title begins with `v` (e.g. `v1.1.2`), and run `gh release edit` (or `gh release create`) with `--title "v<version>"` to update the draft release in-place.

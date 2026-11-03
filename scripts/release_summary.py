@@ -49,9 +49,24 @@ def main():
     if raw_range:
         if " to " in raw_range:
             parts = raw_range.split(" to ")
-            git_range = f"{parts[0].strip()}..{parts[1].strip()}"
+            start = parts[0].strip()
+            end = parts[1].strip()
+            if not start.startswith("v") and re.match(r"^\d+\.\d+", start):
+                start = f"v{start}"
+            if not end.startswith("v") and re.match(r"^\d+\.\d+", end):
+                end = f"v{end}"
+            git_range = f"{start}..{end}"
         else:
             git_range = raw_range.replace("...", "..")
+            parts = git_range.split("..")
+            if len(parts) == 2:
+                start = parts[0].strip()
+                end = parts[1].strip()
+                if not start.startswith("v") and re.match(r"^\d+\.\d+", start):
+                    start = f"v{start}"
+                if not end.startswith("v") and re.match(r"^\d+\.\d+", end):
+                    end = f"v{end}"
+                git_range = f"{start}..{end}"
         tags = git_range.split("..")
         if len(tags) == 2:
             latest = tags[1]
@@ -145,15 +160,17 @@ def main():
     with open('/tmp/release_notes.md', 'w') as f:
         f.write(notes)
         
-    print(f"Updating draft release for {latest}...")
+    tag = latest if latest.startswith("v") else f"v{latest}"
+    title = tag
+
+    print(f"Updating draft release for {tag} ({title})...")
     try:
-        url = run_cmd(f"gh release edit {latest} --draft -F /tmp/release_notes.md")
+        url = run_cmd(f'gh release edit {tag} --draft --title "{title}" -F /tmp/release_notes.md')
         print(f"Draft release updated: {url}")
     except Exception as e:
         print(f"Failed to edit release ({e}), attempting to create draft release...")
         try:
-            title = latest.lstrip("v")
-            url = run_cmd(f"gh release create {latest} --draft --title {title} -F /tmp/release_notes.md")
+            url = run_cmd(f'gh release create {tag} --draft --title "{title}" -F /tmp/release_notes.md')
             print(f"Draft release created: {url}")
         except Exception as e_create:
             print(f"Failed to create release: {e_create}")
