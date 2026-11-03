@@ -62,3 +62,14 @@ tasks:
     cmds:
       - task: conductor:sync
 
+  release:
+    desc: Automated release tagging, validation, and version bump (./scripts/release.sh)
+    cmds:
+      - ./scripts/release.sh {{.CLI_ARGS}}
+
+  release:summary:
+    desc: Generate categorized release notes and update draft release (scripts/release_summary.py)
+    cmds:
+      - uv run python3 scripts/release_summary.py {{.CLI_ARGS}}
+
+
