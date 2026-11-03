@@ -24,6 +24,11 @@ jobs:
       - name: Install trmnl_preview CLI
         run: gem install trmnl_preview
 
+      - name: Configure .trmnlp.yml
+        run: |
+          PLUGIN_ID=$(ruby -ryaml -e 'puts YAML.load_file("src/settings.yml")["id"]')
+          echo "plugin_id: ${PLUGIN_ID}" > .trmnlp.yml
+
       - name: Push plugin to TRMNL
         run: trmnlp push
         env:
