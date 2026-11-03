@@ -30,7 +30,7 @@ jobs:
           echo "plugin_id: ${PLUGIN_ID}" > .trmnlp.yml
 
       - name: Pull plugin from TRMNL
-        run: trmnlp pull
+        run: trmnlp pull --force
         env:
           TRMNL_API_KEY: ${{ secrets.TRMNL_API_KEY }}
 

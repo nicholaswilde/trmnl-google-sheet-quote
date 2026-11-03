@@ -30,6 +30,6 @@ jobs:
           echo "plugin_id: ${PLUGIN_ID}" > .trmnlp.yml
 
       - name: Push plugin to TRMNL
-        run: trmnlp push
+        run: trmnlp push --force
         env:
           TRMNL_API_KEY: ${{ secrets.TRMNL_API_KEY }}
