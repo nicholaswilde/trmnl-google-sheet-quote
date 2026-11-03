@@ -33,3 +33,23 @@ jobs:
         run: trmnlp push --force
         env:
           TRMNL_API_KEY: ${{ secrets.TRMNL_API_KEY }}
+
+  release:
+    name: GitHub Release
+    runs-on: ubuntu-latest
+    needs: ci
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Create or update GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: uv run python3 scripts/release_summary.py

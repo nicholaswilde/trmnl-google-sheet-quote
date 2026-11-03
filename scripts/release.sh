@@ -88,4 +88,4 @@ git tag -a "$NEW_TAG" -m "Release $NEW_TAG"
 echo "Pushing atomically..."
 git push --atomic origin main "$NEW_TAG"
 
-echo "Release $NEW_TAG published successfully! Now run 'task release:summary' to generate release notes."
+echo "Release $NEW_TAG pushed successfully! GitHub Actions will deploy and generate the release draft."
