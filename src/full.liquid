@@ -9,6 +9,10 @@
   {% assign richtext_align = 'richtext--center' %}
   {% assign content_align = '--center text--center' %}
 {% endif %}
+{% assign default_quote = 'The only way to do great work is to love what you do.' %}
+{% assign default_author = 'Steve Jobs' %}
+{% assign quote_text = quote | default: data.quote | default: default_quote %}
+{% assign quote_author = author | default: data.author | default: default_author %}
 <div class="layout">
   <div class="columns">
     <div class="column">
@@ -16,11 +20,13 @@
         <div class="richtext {{ richtext_align }} gap--xxlarge">
           <div class="content content--large {{ content_align }} gap--medium">
             <span class="value value--xxxlarge" data-value-fit="true" data-value-fit-max-height="170">
-              <span id="quote">Loading quote…</span>
+              <span>{{ quote_text }}</span>
             </span>
-            <div class="value value--small text--gray-2">
-              <span id="author">Author</span>
-            </div>
+            {% if quote_author and quote_author != '' %}
+              <div class="value value--small text--gray-2">
+                <span>{{ quote_author }}</span>
+              </div>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -32,78 +38,11 @@
   <div class="title_bar">
     <img
       class="image"
-      src="https://raw.githubusercontent.com/nicholaswilde/trmnl-sheet-quote/refs/heads/main/src/img/sheet-quote.svg"
+      src="https://raw.githubusercontent.com/nicholaswilde/trmnl-google-sheet-quote/refs/heads/main/src/img/sheet-quote.svg"
       width="40"
       height="40"
     >
     <span class="title">{{ trmnl.plugin_settings.instance_name }}</span>
-    <span class="instance">Display a random quote from a Google Sheet</span>
+    <span class="instance">Display a daily quote from a Google Sheet</span>
   </div>
 {% endunless %}
-<script type="text/javascript">
-  function escapeHTML(str) {
-    if (!str) return "";
-    return str.replace(/[&<>'"]/g,
-      tag => ({
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        "'": '&#39;',
-        '"': '&quot;'
-      }[tag]));
-  }
-
-  var fallbackQuotes = [
-    { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
-    { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
-    { text: "It always seems impossible until it's done.", author: "Nelson Mandela" },
-    { text: "Keep your face always toward the sunshine - and shadows will fall behind you.", author: "Walt Whitman" },
-    { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
-    { text: "Start where you are. Use what you have. Do what you can.", author: "Arthur Ashe" }
-  ];
-
-  function useFallback(reason) {
-    console.warn("Sheet Quote: Fallback active. Reason: " + reason);
-    var randIndex = Math.floor(Math.random() * fallbackQuotes.length);
-    var selected = fallbackQuotes[randIndex];
-    document.querySelector('#quote').innerHTML = escapeHTML(selected.text);
-    document.querySelector('#author').innerHTML = escapeHTML(selected.author);
-  }
-
-  try {
-    console.log("Sheet Quote: Starting execution");
-    {% if data %}
-      {% assign limit = data.size | minus: 1 %}
-      {% assign formatted_data = data | slice: 1, limit %}
-    {% else %}
-      {% assign formatted_data = "" | split: "" %}
-    {% endif %}
-    var formatted_data = {{ formatted_data | json }};
-    console.log("Sheet Quote: Data received. Rows:", formatted_data ? formatted_data.length : "null");
-
-    var quote2Index = {{ trmnl.plugin_settings.custom_fields_values.quote_index | plus: 0 }};
-    var authorIndex = {{ trmnl.plugin_settings.custom_fields_values.author_index | plus: 0 }};
-
-    if (formatted_data && formatted_data.length > 0) {
-      var quoteIndex = Math.floor(Math.random() * formatted_data.length);
-      var row = formatted_data[quoteIndex];
-      var quoteContent = row[quote2Index];
-      var authorContent = row[authorIndex] || "";
-
-      if (!quoteContent) {
-        useFallback("Quote column (index " + quote2Index + ") is empty or out of bounds at row " + quoteIndex);
-      } else {
-        document.querySelector('#quote').innerHTML = escapeHTML(quoteContent);
-        document.querySelector('#author').innerHTML = escapeHTML(authorContent);
-      }
-    } else {
-      useFallback("formatted_data is empty or null");
-    }
-  } catch (e) {
-    try {
-      useFallback("Critical Error: " + e.message);
-    } catch (fallbackError) {
-      console.error("Sheet Quote: Fallback failed", fallbackError);
-    }
-  }
-</script>

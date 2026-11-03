@@ -1,0 +1,39 @@
+name: Update Daily Quote
+
+on:
+  schedule:
+    # Run daily at 00:00 UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  daily-quote:
+    name: Generate & Publish Daily Quote
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run test suite
+        run: python3 -m unittest discover tests
+
+      - name: Generate daily quote
+        run: python3 scripts/generate_daily_quote.py
+        env:
+          SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID || '19hESY6AbY2ZwBph_ndF3zrw9hG__2NLzsbZTMrTlcPk' }}
+
+      - name: Commit and push daily quote
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add api/today.json .quote-history.json
+          git commit -m "chore(daily): update quote of the day" || exit 0
+          git push

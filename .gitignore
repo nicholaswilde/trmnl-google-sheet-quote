@@ -61,5 +61,10 @@ Thumbs.db
 .rtk/*
 !.rtk/filters.toml
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
 
 

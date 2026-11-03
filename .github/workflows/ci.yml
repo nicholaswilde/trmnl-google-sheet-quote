@@ -19,6 +19,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run Python Tests
+        run: python3 -m unittest discover tests
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:

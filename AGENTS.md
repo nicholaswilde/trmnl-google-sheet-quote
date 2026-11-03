@@ -107,13 +107,11 @@ This document provides workspace-specific guidelines and technical references fo
 ## TRMNL Plugin System Reference
 
 ### 1. Configuration (`settings.yml`)
-- **Refresh Interval**: The `refresh_interval` setting is defined in **seconds** (e.g., `3600` for 1 hour, `86400` for 24 hours). Setting it to a low value (like `60`) will cause excessive polling and may trigger rate limits or drain device batteries.
+- **Refresh Interval**: The `refresh_interval` setting is defined in **minutes** (e.g. `15`, `60`, `360`, `720`, `1440`). For once-daily updates, use `1440`. Setting a large value like `3600` results in 60 hours.
 
 ### 2. URL Templating & Caching
-- **Lazy Refreshing**: TRMNL only re-renders the plugin graphic if the fetched data payload has changed. If the data source returns identical content (e.g. a static Google Sheet CSV), TRMNL skips rendering.
-- **Cache Busting**: To force daily re-rendering on static data feeds, append a Liquid date cache-buster parameter to the `polling_url` in `settings.yml`:
-  `polling_url: https://example.com/data?t={{ "now" | date: "%Y%m%d" }}`
-- Google Sheets export endpoint ignores unknown query parameters but TRMNL evaluates the changing URL as a new cache key.
+- **Payload-Based Rendering**: TRMNL only re-renders the plugin graphic if the fetched data payload has changed. If the data source returns identical content (e.g. a static Google Sheet CSV), TRMNL skips rendering.
+- **Daily Rotation**: Daily screen updates require the polled endpoint payload (e.g. `api/today.json`) to change each day. This is automated via a scheduled GitHub Action that updates `api/today.json`. Google Sheets URL parameter cache-busting fails because the exported CSV body is static.
 
 ### 3. Liquid Template Syntax
 - **Accessing User Settings**: Access user-configured custom fields using:

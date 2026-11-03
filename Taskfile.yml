@@ -21,6 +21,11 @@ tasks:
     cmds:
       - npx shopify theme check
 
+  test:
+    desc: Run Python unit test suite
+    cmds:
+      - python3 -m unittest discover tests
+
   format:
     desc: Run Prettier formatting on source templates and configurations
     cmds:

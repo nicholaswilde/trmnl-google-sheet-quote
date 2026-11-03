@@ -10,29 +10,31 @@ A private plugin for [TRMNL](https://trmnl.com/) to display quotes from a Google
 
 ## :rocket: Features
 
-- Displays a random quote from a Google Sheet.
-- Customizable polling interval to fetch new quotes (default: 1 hour).
-- Configurable columns for quote and author.
+- Displays a daily quote synced from a Google Sheet.
+- Automated daily quote rotation via GitHub Actions (running daily at 00:00 UTC).
+- Quote history tracking to prevent repeating quotes within 30 days.
+- Pure Liquid template rendering without client-side JavaScript execution dependencies.
 - Option to hide the bottom title bar to maximize quote size.
-- Robust error handling with on-screen feedback.
+- Configurable text alignment (Center, Left, Right).
+
+## :gear: How It Works
+
+1. **Daily Action**: A GitHub Actions workflow runs daily at 00:00 UTC, fetches quotes from your Google Sheet, selects a non-repeating quote, and commits the updated quote to `api/today.json`.
+2. **TRMNL Polling**: TRMNL polls `https://raw.githubusercontent.com/nicholaswilde/trmnl-google-sheet-quote/refs/heads/main/api/today.json` once a day (`refresh_interval: 1440` minutes).
+3. **Screen Rendering**: Because the JSON payload changes daily, TRMNL detects the fresh data and triggers a screen re-render for your e-ink display.
 
 ## :hammer_and_wrench: Installation
 
-1.  Clone this repository to your local machine.
-2.  Copy the `src` directory to your TRMNL plugins directory.
-3.  Rename the `src` directory to `sheet-quote`.
+1. Fork or clone this repository to your GitHub account.
+2. If using your own Google Sheet, configure the `SPREADSHEET_ID` repository secret or variable (defaults to the author's public quote sheet).
+3. Import or create the private plugin in TRMNL with the polling URL pointing to your repository's `api/today.json`.
 
 ## :gear: Configuration
 
-Configuration is handled within the TRMNL application. After installing the plugin, you will find the following settings:
+Configuration is handled within the TRMNL application:
 
-- **Spreadsheet ID**: The ID of your Google Sheet.
-- **Quote Column Index**: The column number (starting from 0) for the quotes in your sheet.
-- **Author Column Index**: The column number (starting from 0) for the authors in your sheet.
 - **Hide Title Bar**: Option to hide the bottom TRMNL logo and title bar (options: `No`, `Yes`).
 - **Text Alignment**: Option to align quote and author text (options: `Center`, `Left`, `Right`).
-
-For more detailed instructions, please see the [TRMNL documentation](https://help.usetrmnl.com/en/articles/11400219-using-google-sheets-with-private-plugins).
 
 ## :arrows_counterclockwise: GitHub Synchronization
 
