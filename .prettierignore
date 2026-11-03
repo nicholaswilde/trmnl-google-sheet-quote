@@ -1,5 +1,6 @@
 node_modules/
 conductor/
+.agents/conductor/
 .git/
 package.json
 package-lock.json

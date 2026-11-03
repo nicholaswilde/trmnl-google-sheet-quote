@@ -50,3 +50,16 @@ Thumbs.db
 .env
 .trmnlp.yml
 
+# Agentic Tools
+.codegraph/
+.serena/
+.agents/*
+!.agents/skills/
+!.agents/rules/
+!.agents/skills_catalog.md
+!.agents/conductor/
+.rtk/*
+!.rtk/filters.toml
+
+
+

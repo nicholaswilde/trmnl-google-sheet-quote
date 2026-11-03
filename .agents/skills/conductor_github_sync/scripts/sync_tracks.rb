@@ -8,9 +8,9 @@ require 'date'
 require 'shellwords'
 
 REPO_ROOT = File.expand_path('../../../../', __dir__)
-TRACKS_DIR = File.join(REPO_ROOT, 'conductor/tracks')
-ARCHIVE_DIR = File.join(REPO_ROOT, 'conductor/archive')
-TRACKS_FILE = File.join(REPO_ROOT, 'conductor/tracks.md')
+TRACKS_DIR = File.join(REPO_ROOT, '.agents/conductor/tracks')
+ARCHIVE_DIR = File.join(REPO_ROOT, '.agents/conductor/archive')
+TRACKS_FILE = File.join(REPO_ROOT, '.agents/conductor/tracks.md')
 
 # Helper to run system commands safely
 def run_cmd(cmd, env = {})
