@@ -62,6 +62,7 @@ Thumbs.db
 !.rtk/filters.toml
 
 # Python
+.venv/
 __pycache__/
 *.py[cod]
 *$py.class

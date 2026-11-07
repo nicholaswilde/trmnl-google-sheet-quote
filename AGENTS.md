@@ -95,6 +95,12 @@ Use Headroom (`headroom`) MCP tools to manage context window consumption on larg
 - **Scope**: Use `-t liquid` or `-t yaml` where appropriate, `-l` for file listing, keep context small (`-C 1`).
 <!-- ripgrep-guidelines-end -->
 
+<!-- fd-rules-begin -->
+## File Discovery (`fd`)
+- **Prefer `fd`**: Use `fd` (or `rtk fd`) instead of `find` for finding files and directories across repositories.
+- **Scope**: Respects `.gitignore`, skips build directories and caches, runs faster, and saves context tokens.
+<!-- fd-rules-end -->
+
 <!-- uv-rules-begin -->
 ## Python Execution with `uv`
 - **Prefix with `uv`**: Always execute Python scripts, tools, and tests via `uv run python3 <script>` (e.g. `uv run python3 scripts/generate_daily_quote.py`) or `uv run <command>`. Never run bare `python3` or `python`.
