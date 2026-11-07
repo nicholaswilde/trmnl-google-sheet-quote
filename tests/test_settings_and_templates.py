@@ -141,6 +141,33 @@ class TestRegressionIssue19(unittest.TestCase):
                 self.assertLess(idx, total_rows, f"Index out of bounds ({idx} >= {total_rows}) on day {day}")
                 self.assertGreaterEqual(idx, 1)
 
+    def test_polling_url_supports_non_first_tab_gid(self):
+        """Verify polling_url preserves &gid=XXX when user points to a specific tab per TRMNL guide."""
+        ruby_script = """
+        require 'yaml'
+        require 'liquid'
+
+        settings = YAML.load_file('src/settings.yml')
+        tmpl = Liquid::Template.parse(settings['polling_url'])
+
+        url_hash_gid = "https://docs.google.com/spreadsheets/d/19hESY6AbY2ZwBph_ndF3zrw9hG__2NLzsbZTMrTlcPk/edit#gid=987654321"
+        rendered_hash = tmpl.render({ 'spreadsheet_id' => url_hash_gid })
+        raise "Missing &gid=987654321 in #{rendered_hash}" unless rendered_hash.include?('&gid=987654321')
+
+        url_query_gid = "https://docs.google.com/spreadsheets/d/19hESY6AbY2ZwBph_ndF3zrw9hG__2NLzsbZTMrTlcPk/edit?gid=123456789&usp=sharing"
+        rendered_query = tmpl.render({ 'spreadsheet_id' => url_query_gid })
+        raise "Missing &gid=123456789 in #{rendered_query}" unless rendered_query.include?('&gid=123456789')
+
+        url_no_gid = "https://docs.google.com/spreadsheets/d/19hESY6AbY2ZwBph_ndF3zrw9hG__2NLzsbZTMrTlcPk"
+        rendered_no_gid = tmpl.render({ 'spreadsheet_id' => url_no_gid })
+        raise "Unexpected gid in #{rendered_no_gid}" if rendered_no_gid.include?('&gid=')
+
+        puts 'GID_SUPPORT_OK'
+        """
+        result = self._run_ruby(ruby_script)
+        self.assertEqual(result.returncode, 0, f"Ruby error: {result.stderr}")
+        self.assertIn('GID_SUPPORT_OK', result.stdout)
+
     def test_regression_issue_19_ruby_liquid_polling_url_handles_urls(self):
         """Verify polling_url template extracts correct sheet ID via live Liquid engine (if available)."""
         ruby_script = """
@@ -151,7 +178,7 @@ class TestRegressionIssue19(unittest.TestCase):
         tmpl = Liquid::Template.parse(settings['polling_url'])
 
         expected_id = '19hESY6AbY2ZwBph_ndF3zrw9hG__2NLzsbZTMrTlcPk'
-        expected_prefix = "https://docs.google.com/spreadsheets/d/#{expected_id}/export?format=csv&t="
+        expected_prefix = "https://docs.google.com/spreadsheets/d/#{expected_id}/export?format=csv"
 
         test_inputs = [
           expected_id,

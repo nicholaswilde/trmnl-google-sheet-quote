@@ -33,7 +33,7 @@ A private plugin for [TRMNL](https://trmnl.com/) to display quotes from a Google
 
 Configuration is handled within the TRMNL application:
 
-- **Spreadsheet ID or URL**: The ID or shareable link of your Google Sheet (defaults to the author's public quote sheet). Ensure the sheet is shared with "Anyone with the link can view".
+- **Spreadsheet ID or URL**: The ID or shareable link of your Google Sheet (defaults to the author's public quote sheet). Ensure the sheet is shared with "Anyone with the link can view". If your quotes are on a specific non-first tab, paste the full URL containing `&gid=...` or `#gid=...`.
 - **Quote Column Index**: The zero-based column index of the quote text in your sheet (e.g. Column A is 0, Column B is 1, default: `1`).
 - **Author Column Index**: The zero-based column index of the author text in your sheet (e.g. Column A is 0, Column C is 2, default: `2`).
 - **Hide Title Bar**: Option to hide the bottom TRMNL logo and title bar (options: `No`, `Yes`).
