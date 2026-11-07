@@ -132,6 +132,20 @@ This document provides workspace-specific guidelines and technical references fo
 - Client-side `<script>` tags inside Liquid templates are executed on the TRMNL server within a headless browser during the graphic generation phase.
 - To skip rendering/displaying a plugin dynamically (e.g. when there is no new data), set `window.TRMNL_SKIP_DISPLAY = true;` inside a `<script>` tag.
 
+## Testing & Quality Gates
+
+### Test-Driven Development (TDD) Protocol
+Development in this repository strictly adheres to TDD principles:
+1. **Red Phase**: Write failing unit or regression tests in `tests/` before writing any feature or fix implementation. Run `task test` to verify failure.
+2. **Green Phase**: Write the minimum code necessary to make the tests pass.
+3. **Refactor Phase**: Clean and optimize code while keeping tests green, adhering to ponytail minimalism.
+
+### Quality Gates
+Before completing or committing any task:
+- [ ] `task test` passes all unit and regression tests (`uv run python3 -m unittest discover tests`).
+- [ ] `task format` / `npx prettier --check "src/**/*.liquid" "src/**/*.yml"` passes formatting validation.
+- [ ] `npm run lint` (`shopify theme check`) passes without errors.
+
 ## Task & Issue Tracking
 - **Remote GitHub Issues Only**: All features, enhancements, and bugs are tracked directly in remote GitHub issues using `gh` CLI. Do not initialize or maintain local Conductor tracks.
 - **Commit References**: Use `Fixes #<issue_id>` in commit messages to automatically close issues when pushed.

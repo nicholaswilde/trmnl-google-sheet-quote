@@ -4,7 +4,7 @@
   "description": "A private plugin for TRMNL to display quotes from a Google Sheet.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "uv run python3 -m unittest discover tests",
     "format": "prettier --write \"src/**/*.{liquid,yml}\"",
     "lint": "shopify theme check"
   },

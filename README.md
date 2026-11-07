@@ -118,6 +118,16 @@ Because the upstream `trmnl_preview` gem (v0.8.7) does not follow HTTP redirects
    end
    ```
 
+### Testing & TDD Workflow
+
+This project adheres to **Test-Driven Development (TDD)**. Always write failing tests in `tests/` before implementing bug fixes or features:
+
+```bash
+task test        # Run full unit and regression test suite
+task test:watch  # Continuously run tests on file changes
+npm test         # Run tests via npm shortcut
+```
+
 ### Linting & Formatting
 
 This project uses Shopify's **Theme Check** to lint the Liquid template files and **Prettier** to auto-format files.

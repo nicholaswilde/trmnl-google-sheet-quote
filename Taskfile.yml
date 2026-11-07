@@ -23,8 +23,17 @@ tasks:
 
   test:
     desc: Run Python unit test suite
+    sources:
+      - src/**/*
+      - tests/**/*
+      - scripts/**/*
     cmds:
       - uv run python3 -m unittest discover tests
+
+  test:watch:
+    desc: Watch files and continuously run unit test suite
+    cmds:
+      - task --watch test
 
   format:
     desc: Run Prettier formatting on source templates and configurations
