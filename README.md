@@ -19,20 +19,23 @@ A private plugin for [TRMNL](https://trmnl.com/) to display quotes from a Google
 
 ## :gear: How It Works
 
-1. **Daily Action**: A GitHub Actions workflow runs daily at 00:00 UTC, fetches quotes from your Google Sheet, selects a non-repeating quote, and commits the updated quote to `api/today.json`.
-2. **TRMNL Polling**: TRMNL polls `https://raw.githubusercontent.com/nicholaswilde/trmnl-google-sheet-quote/refs/heads/main/api/today.json` once a day (`refresh_interval: 1440` minutes).
-3. **Screen Rendering**: Because the JSON payload changes daily, TRMNL detects the fresh data and triggers a screen re-render for your e-ink display.
+1. **Google Sheets Polling**: TRMNL polls your Google Sheet CSV export daily (`refresh_interval: 1440` minutes) using your configured `Spreadsheet ID or URL`.
+2. **Deterministic Daily Rotation**: Quotes rotate daily using pure Liquid date indexing based on the day of the year (`now | date: "%j"`).
+3. **Screen Rendering**: TRMNL renders the selected quote and author on your e-ink display using responsive Liquid templates without client-side JavaScript execution dependencies.
 
 ## :hammer_and_wrench: Installation
 
-1. Fork or clone this repository to your GitHub account.
-2. If using your own Google Sheet, configure the `SPREADSHEET_ID` repository secret or variable (defaults to the author's public quote sheet).
-3. Import or create the private plugin in TRMNL with the polling URL pointing to your repository's `api/today.json`.
+1. Add or import the private plugin into your TRMNL dashboard.
+2. In the plugin settings, paste your **Spreadsheet ID or URL**.
+3. (Optional) Set the **Quote Column Index** and **Author Column Index** if your sheet columns differ from column B (`1`) and column C (`2`).
 
 ## :gear: Configuration
 
 Configuration is handled within the TRMNL application:
 
+- **Spreadsheet ID or URL**: The ID or shareable link of your Google Sheet (defaults to the author's public quote sheet). Ensure the sheet is shared with "Anyone with the link can view".
+- **Quote Column Index**: The zero-based column index of the quote text in your sheet (e.g. Column A is 0, Column B is 1, default: `1`).
+- **Author Column Index**: The zero-based column index of the author text in your sheet (e.g. Column A is 0, Column C is 2, default: `2`).
 - **Hide Title Bar**: Option to hide the bottom TRMNL logo and title bar (options: `No`, `Yes`).
 - **Text Alignment**: Option to align quote and author text (options: `Center`, `Left`, `Right`).
 

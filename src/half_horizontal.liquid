@@ -11,8 +11,22 @@
 {% endif %}
 {% assign default_quote = 'The only way to do great work is to love what you do.' %}
 {% assign default_author = 'Steve Jobs' %}
-{% assign quote_text = quote | default: data.quote | default: default_quote %}
-{% assign quote_author = author | default: data.author | default: default_author %}
+{% if data.quote %}
+  {% assign quote_text = data.quote | strip %}
+  {% assign quote_author = data.author | strip %}
+{% elsif data.size > 1 %}
+  {% assign quote_col = trmnl.plugin_settings.custom_fields_values.quote_index | default: 1 | plus: 0 %}
+  {% assign author_col = trmnl.plugin_settings.custom_fields_values.author_index | default: 2 | plus: 0 %}
+  {% assign total_quotes = data.size | minus: 1 %}
+  {% assign day_of_year = 'now' | date: '%j' | plus: 0 %}
+  {% assign quote_idx = day_of_year | modulo: total_quotes | plus: 1 %}
+  {% assign selected_row = data[quote_idx] %}
+  {% assign quote_text = selected_row[quote_col] | strip | default: default_quote %}
+  {% assign quote_author = selected_row[author_col] | strip %}
+{% else %}
+  {% assign quote_text = quote | default: data.quote | default: default_quote %}
+  {% assign quote_author = author | default: data.author | default: default_author %}
+{% endif %}
 <div class="layout">
   <div class="columns">
     <div class="column">

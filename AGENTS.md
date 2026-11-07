@@ -116,8 +116,8 @@ This document provides workspace-specific guidelines and technical references fo
 - **Refresh Interval**: The `refresh_interval` setting is defined in **minutes** (e.g. `15`, `60`, `360`, `720`, `1440`). For once-daily updates, use `1440`. Setting a large value like `3600` results in 60 hours.
 
 ### 2. URL Templating & Caching
-- **Payload-Based Rendering**: TRMNL only re-renders the plugin graphic if the fetched data payload has changed. If the data source returns identical content (e.g. a static Google Sheet CSV), TRMNL skips rendering.
-- **Daily Rotation**: Daily screen updates require the polled endpoint payload (e.g. `api/today.json`) to change each day. This is automated via a scheduled GitHub Action that updates `api/today.json`. Google Sheets URL parameter cache-busting fails because the exported CSV body is static.
+- **URL Templating**: `polling_url` supports Liquid variable interpolation and filters. The Google Sheet URL template extracts the spreadsheet ID from either a raw ID or full URL and appends `&t={{ "now" | date: "%Y%m%d" }}` for daily cache-busting.
+- **Dual Data Handling**: Liquid templates support both CSV datasets (polled directly from Google Sheets) and JSON payloads (`api/today.json`). For CSV data, pure Liquid date indexing (`now | date: "%j"`) determines the daily rotating quote row.
 
 ### 3. Liquid Template Syntax
 - **Accessing User Settings**: Access user-configured custom fields using:

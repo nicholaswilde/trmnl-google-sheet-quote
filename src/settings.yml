@@ -5,7 +5,7 @@ no_screen_padding: "no"
 dark_mode: "no"
 static_data: ""
 polling_verb: get
-polling_url: https://raw.githubusercontent.com/nicholaswilde/trmnl-google-sheet-quote/refs/heads/main/api/today.json
+polling_url: 'https://docs.google.com/spreadsheets/d/{{ spreadsheet_id | default: "19hESY6AbY2ZwBph_ndF3zrw9hG__2NLzsbZTMrTlcPk" | remove: "https://docs.google.com/spreadsheets/d/" | remove: "http://docs.google.com/spreadsheets/d/" | split: "/" | first | split: "?" | first | split: "#" | first | strip }}/export?format=csv&t={{ "now" | date: "%Y%m%d" }}'
 polling_headers: ""
 polling_body: ""
 id: 121258
@@ -16,6 +16,30 @@ custom_fields:
     description: Display a daily quote synced from a Google Sheet.
     github_url: https://github.com/nicholaswilde/trmnl-google-sheet-quote
     learn_more_url: https://github.com/nicholaswilde/trmnl-google-sheet-quote#readme
+  - keyname: instructions
+    name: Instructions
+    field_type: author_bio
+    description: Create a Google Sheet with a quote and an author column, add the <em><b>Anyone with a link can view</b></em> permission, and paste the "Spreadsheet ID" or shareable link into the field below.
+    github_url: https://github.com/nicholaswilde/trmnl-google-sheet-quote
+    learn_more_url: https://help.usetrmnl.com/en/articles/11400219-using-google-sheets-with-private-plugins
+  - keyname: spreadsheet_id
+    field_type: string
+    name: Spreadsheet ID or URL
+    description: The ID or shareable link of the Google Sheet
+    placeholder: 19hESY6AbY2ZwBph_ndF3zrw9hG__2NLzsbZTMrTlcPk
+    default: 19hESY6AbY2ZwBph_ndF3zrw9hG__2NLzsbZTMrTlcPk
+  - keyname: quote_index
+    field_type: number
+    placeholder: "1"
+    name: Quote Column Index
+    description: The zero-based column index of the quote in the Google Sheet (Column A is 0, Column B is 1).
+    default: 1
+  - keyname: author_index
+    field_type: number
+    placeholder: "2"
+    name: Author Column Index
+    description: The zero-based column index of the author in the Google Sheet (Column A is 0, Column C is 2).
+    default: 2
   - keyname: hide_title_bar
     field_type: select
     name: Hide Title Bar
