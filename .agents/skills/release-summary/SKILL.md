@@ -1,6 +1,6 @@
 ---
 name: release-summary
-description: Generates a clean, professional GitHub release summary based on git logs using scripts/release_summary.py.
+description: Generates a clean, professional GitHub release summary based on git logs using scripts/release_summary.py. Trigger: /release-summary, "release summary", "generate release summary", "create release notes".
 ---
 
 # /release-summary [range]

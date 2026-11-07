@@ -1,6 +1,6 @@
 ---
 name: conductor_github_sync
-description: Sync Conductor tracks and GitHub issues. Automates creating GitHub issues from Conductor tracks and importing GitHub issues as Conductor tracks.
+description: Sync Conductor tracks and GitHub issues. Automates creating GitHub issues from Conductor tracks and importing GitHub issues as Conductor tracks. Trigger: /conductor-sync, "sync conductor", "sync tracks".
 ---
 
 # Conductor GitHub Synchronization Skill

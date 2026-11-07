@@ -1,6 +1,6 @@
 ---
 name: trmnl_framework
-description: Maintain, verify, and update the TRMNL UI framework version in settings.yml.
+description: Maintain, verify, and update the TRMNL UI framework version in settings.yml. Trigger: /trmnl-framework, "verify framework", "update framework", "trmnl framework".
 ---
 
 # TRMNL Framework Version Management Skill
