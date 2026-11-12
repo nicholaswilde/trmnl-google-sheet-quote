@@ -5,7 +5,7 @@ no_screen_padding: "no"
 dark_mode: "no"
 static_data: ""
 polling_verb: get
-polling_url: '{%- assign raw_id = spreadsheet_id | default: "19hESY6AbY2ZwBph_ndF3zrw9hG__2NLzsbZTMrTlcPk" -%}{%- assign clean_id = raw_id | remove: "https://docs.google.com/spreadsheets/d/" | remove: "http://docs.google.com/spreadsheets/d/" | split: "/" | first | split: "?" | first | split: "#" | first | strip -%}{%- if raw_id contains "gid=" -%}{%- assign gid = raw_id | split: "gid=" | last | split: "&" | first | split: "#" | first | strip -%}{%- assign gid_param = "&gid=" | append: gid -%}{%- else -%}{%- assign gid_param = "" -%}{%- endif -%}https://docs.google.com/spreadsheets/d/{{ clean_id }}/export?format=csv{{ gid_param }}&t={{ "now" | date: "%Y%m%d" }}'
+polling_url: '{%- assign default_sheet = "19hESY6AbY2ZwBph_ndF3zrw9hG__2NLzsbZTMrTlcPk" -%}{%- assign raw_id = spreadsheet_id | default: default_sheet | strip -%}{%- assign clean_id = raw_id | remove: "https://docs.google.com/spreadsheets/d/" | remove: "http://docs.google.com/spreadsheets/d/" | split: "/" | first | split: "?" | first | split: "#" | first | strip -%}{%- if raw_id contains "gid=" -%}{%- assign gid = raw_id | split: "gid=" | last | split: "&" | first | split: "#" | first | strip -%}https://docs.google.com/spreadsheets/d/{{ clean_id }}/export?format=csv&gid={{ gid }}&t={{ "now" | date: "%Y%m%d" }}{%- elsif clean_id != default_sheet and clean_id != "" -%}https://docs.google.com/spreadsheets/d/{{ clean_id }}/export?format=csv&t={{ "now" | date: "%Y%m%d" }}{%- else -%}https://raw.githubusercontent.com/nicholaswilde/trmnl-google-sheet-quote/refs/heads/main/api/today.json{%- endif -%}'
 polling_headers: ""
 polling_body: ""
 id: 121258

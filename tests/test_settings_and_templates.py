@@ -68,15 +68,12 @@ class TestRegressionIssue19(unittest.TestCase):
         self.assertIn('default: 19hESY6AbY2ZwBph_ndF3zrw9hG__2NLzsbZTMrTlcPk', content)
 
     def test_regression_issue_19_polling_url_not_hardcoded_to_repo_json(self):
-        """Verify polling_url points to Google Sheets CSV export, not a hardcoded today.json URL."""
+        """Verify polling_url supports both daily today.json rotation (default) and Google Sheets CSV export (custom)."""
         content = self.settings_path.read_text(encoding='utf-8')
 
-        # Must not point to hardcoded github raw today.json (the root cause of Issue #19)
-        self.assertNotIn(
-            'today.json',
-            content,
-            "Regression: polling_url is hardcoded to today.json instead of Google Sheets export"
-        )
+        # Must support daily rotation via today.json for default sheet
+        self.assertIn('today.json', content)
+        # Must support Google Sheets CSV export for custom sheets
         self.assertIn('docs.google.com/spreadsheets/d/', content)
         self.assertIn('spreadsheet_id', content)
         self.assertIn('format=csv', content)
@@ -161,6 +158,7 @@ class TestRegressionIssue19(unittest.TestCase):
         url_no_gid = "https://docs.google.com/spreadsheets/d/19hESY6AbY2ZwBph_ndF3zrw9hG__2NLzsbZTMrTlcPk"
         rendered_no_gid = tmpl.render({ 'spreadsheet_id' => url_no_gid })
         raise "Unexpected gid in #{rendered_no_gid}" if rendered_no_gid.include?('&gid=')
+        raise "Expected today.json for default sheet without gid" unless rendered_no_gid.include?('today.json')
 
         puts 'GID_SUPPORT_OK'
         """
@@ -169,7 +167,7 @@ class TestRegressionIssue19(unittest.TestCase):
         self.assertIn('GID_SUPPORT_OK', result.stdout)
 
     def test_regression_issue_19_ruby_liquid_polling_url_handles_urls(self):
-        """Verify polling_url template extracts correct sheet ID via live Liquid engine (if available)."""
+        """Verify polling_url template defaults to today.json and extracts correct custom sheet ID via Liquid engine."""
         ruby_script = """
         require 'yaml'
         require 'liquid'
@@ -177,22 +175,37 @@ class TestRegressionIssue19(unittest.TestCase):
         settings = YAML.load_file('src/settings.yml')
         tmpl = Liquid::Template.parse(settings['polling_url'])
 
-        expected_id = '19hESY6AbY2ZwBph_ndF3zrw9hG__2NLzsbZTMrTlcPk'
-        expected_prefix = "https://docs.google.com/spreadsheets/d/#{expected_id}/export?format=csv"
+        default_id = '19hESY6AbY2ZwBph_ndF3zrw9hG__2NLzsbZTMrTlcPk'
+        expected_json_url = "https://raw.githubusercontent.com/nicholaswilde/trmnl-google-sheet-quote/refs/heads/main/api/today.json"
 
-        test_inputs = [
-          expected_id,
-          "https://docs.google.com/spreadsheets/d/#{expected_id}/edit?usp=sharing",
-          "https://docs.google.com/spreadsheets/d/#{expected_id}#gid=0",
-          "https://docs.google.com/spreadsheets/d/#{expected_id}/",
-          "  #{expected_id}  ",
+        # Default sheet ID or empty should resolve to today.json for daily screen updates
+        default_inputs = [
+          default_id,
+          "https://docs.google.com/spreadsheets/d/#{default_id}/edit?usp=sharing",
+          "https://docs.google.com/spreadsheets/d/#{default_id}/",
+          "  #{default_id}  ",
           nil,
           ''
         ]
 
-        test_inputs.each do |input|
+        default_inputs.each do |input|
           rendered = tmpl.render({ 'spreadsheet_id' => input })
-          raise "Failed for input #{input.inspect}: #{rendered}" unless rendered.start_with?(expected_prefix)
+          raise "Failed for default input #{input.inspect}: #{rendered}" unless rendered == expected_json_url
+        end
+
+        # Custom sheet IDs should resolve to Google Sheets CSV export
+        custom_id = 'custom-user-sheet-xyz'
+        expected_csv_prefix = "https://docs.google.com/spreadsheets/d/#{custom_id}/export?format=csv"
+        custom_inputs = [
+          custom_id,
+          "https://docs.google.com/spreadsheets/d/#{custom_id}/edit?usp=sharing",
+          "https://docs.google.com/spreadsheets/d/#{custom_id}/",
+          "  #{custom_id}  "
+        ]
+
+        custom_inputs.each do |input|
+          rendered = tmpl.render({ 'spreadsheet_id' => input })
+          raise "Failed for custom input #{input.inspect}: #{rendered}" unless rendered.start_with?(expected_csv_prefix)
         end
 
         puts 'URL_PARSING_OK'

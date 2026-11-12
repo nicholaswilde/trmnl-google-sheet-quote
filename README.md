@@ -19,8 +19,8 @@ A private plugin for [TRMNL](https://trmnl.com/) to display quotes from a Google
 
 ## :gear: How It Works
 
-1. **Google Sheets Polling**: TRMNL polls your Google Sheet CSV export daily (`refresh_interval: 1440` minutes) using your configured `Spreadsheet ID or URL`.
-2. **Deterministic Daily Rotation**: Quotes rotate daily using pure Liquid date indexing based on the day of the year (`now | date: "%j"`).
+1. **Daily Quotes**: By default, TRMNL polls `api/today.json` (`refresh_interval: 1440` minutes), updated daily at 00:00 UTC with non-repeating quotes from the public Google Sheet so your screen always refreshes each day.
+2. **Custom Google Sheets**: When a custom `Spreadsheet ID or URL` is configured in plugin settings, TRMNL polls your sheet's CSV export and rotates quotes daily via Liquid date indexing (`now | date: "%j"`).
 3. **Screen Rendering**: TRMNL renders the selected quote and author on your e-ink display using responsive Liquid templates without client-side JavaScript execution dependencies.
 
 ## :hammer_and_wrench: Installation
